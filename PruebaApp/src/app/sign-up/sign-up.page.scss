@@ -1,0 +1,31 @@
+  
+.form{
+    margin-top: 10%;
+}
+
+ion-toolbar{
+    --background: none;
+    background: rgb(233,216,166);
+    background: linear-gradient(90deg, rgba(233,216,166,1) 0%, rgba(0,18,25,1) 100%);  
+}
+
+ion-content{
+    --background: none;
+    background: rgb(0,18,25);
+    background: linear-gradient(90deg, rgba(0,18,25,1) 0%, rgba(233,216,166,1) 100%);   
+}
+
+.bg-form{
+    --background: none;
+    background: rgb(193,179,139);
+}
+
+.bg-b{
+    --background: none;
+    background: #001219; 
+}
+
+img{
+    height: 25vh;
+    margin-top: 5%;
+}

@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>generarQR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-card class="ion-text-center">
+    <ion-card-content>
+        <qrcode *ngIf="mostrarQr" (qrCodeURL)="onChangeURL($event)" [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+        <!--a [href]="qrCodeDownloadLink" download="qrcode">Descargar QR</a-->
+      </ion-card-content>
+  </ion-card>
+
+</ion-content>

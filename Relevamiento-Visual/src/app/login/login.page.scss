@@ -1,0 +1,156 @@
+ion-content {
+  --background: radial-gradient(
+    circle,
+    rgba(128, 237, 153, 1) 0%,
+    rgba(65, 202, 170, 1) 50%,
+    rgba(56, 163, 165, 1) 100%
+  );
+}
+
+@keyframes logo-1 {
+  0% {
+    transform: scale(1.2);
+  }
+  85% {
+    transform: scale(1.2);
+  }
+  90% {
+    transform: rotate(5deg) scale(1.2);
+  }
+  92% {
+    transform: rotate(-5deg) scale(1.2);
+  }
+  94% {
+    transform: rotate(5deg) scale(1.2);
+  }
+  96% {
+    transform: rotate(-5deg) scale(1.2);
+  }
+  98% {
+    transform: rotate(5deg) scale(1.2);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes logo-2 {
+  0% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+.logo {
+  margin-top: 30px;
+  margin-bottom: 25px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    rgba(24, 78, 119, 1) 0%,
+    rgba(30, 96, 145, 1) 50%,
+    rgba(26, 117, 159, 1) 100%
+  );
+  box-shadow: 0px 0px 10px 2px #1a759f;
+  img {
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    top: 35px;
+  }
+}
+
+#manos {
+  animation: logo-1 4.5s linear infinite both;
+}
+
+#casaSola {
+  animation: logo-2 linear both;
+}
+
+#customRange {
+  width: 85%;
+  border-radius: 20px;
+  padding: 15px;
+}
+
+input {
+  color: black !important;
+  background-color: #f8edeb;
+}
+
+input:focus {
+  background-color: #f8edeb;
+}
+
+.sin-espacio {
+  margin-bottom: 0px;
+}
+
+.error-borde {
+  box-shadow: 0px 0px 3px 3px #e76f51;
+}
+
+.error {
+  font-size: 16px;
+  color: #e76f51;
+}
+
+.inicio {
+  h1 {
+    margin: 0px 0px 10px 0px;
+    color: #f8edeb;
+  }
+  padding: 15px;
+  background: linear-gradient(
+    90deg,
+    rgba(24, 78, 119, 1) 0%,
+    rgba(30, 96, 145, 1) 50%,
+    rgba(26, 117, 159, 1) 100%
+  );
+  color: #f8edeb;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 2px #1a759f;
+}
+
+.acceso {
+  h2 {
+    margin: 0px 0px 10px 0px;
+    color: #f8edeb;
+  }
+  padding: 15px 0px 15px 0px;
+  background: linear-gradient(
+    90deg,
+    rgba(24, 78, 119, 1) 0%,
+    rgba(30, 96, 145, 1) 50%,
+    rgba(26, 117, 159, 1) 100%
+  );
+  color: #f8edeb;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 2px #1a759f;
+}
+
+.btn-per {
+  font-weight: bold;
+  background-color: #52b69a;
+  border: none;
+}
+.btn-per:hover {
+  background-color: #52b69a;
+}
+.btn-per:active {
+  background-color: #469881;
+}
+
+.btn {
+  color: #f8edeb;
+}
+
+.btn:hover {
+  color: #f8edeb;
+}

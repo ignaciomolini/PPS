@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <h1 class="fuente">Foto tomada</h1>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="contenedor" *ngIf="imagen.data != ''">
+    <div class="card card-foto">
+      <img src="{{imagen.data}}" />
+    </div>
+    <div class="card formulario">
+      <form [formGroup]="descripcionFoto" (ngSubmit)="guardarFoto()">
+        <div
+          [ngClass]="((descripcion.dirty || descripcion.touched) && descripcion.errors) ? 'mb-1' : 'mb-3'"
+        >
+          <label for="descripcion" class="form-label"
+            >Ingrese una descripcion para la foto:</label
+          >
+          <input
+            formControlName="descripcion"
+            type="text"
+            id="descripcion"
+            class="form-control bordes"
+            [class.error-borde]="(descripcion.dirty || descripcion.touched) && descripcion.errors"
+          />
+          <small
+            class="error"
+            *ngIf="(descripcion.dirty || descripcion.touched) && descripcion.errors"
+          >
+            Debe ingresar una descripción (max 20 caract)
+          </small>
+        </div>
+        <div class="d-grid">
+          <button
+            class="btn btn-per"
+            type="submit"
+            [disabled]="!descripcionFoto.valid"
+          >
+            Guardar foto
+          </button>
+        </div>
+        <div class="d-grid mt-2">
+          <button class="btn btn-per" type="button" (click)="sacarFoto()">
+            Volver a sacar
+          </button>
+        </div>
+      </form>
+    </div>
+    <!-- <div class="card p-3 formulario">
+      
+    </div> -->
+  </div>
+</ion-content>

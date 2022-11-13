@@ -1,0 +1,13 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="logout()">
+      <ion-icon name="log-out-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <button class="bg-lindo boton" (click)="ingresarMenu('lindo')">
+    <span class="texto-but">Cosas lindas</span>
+  </button>
+  <button class="bg-feo boton" (click)="ingresarMenu('feo')">
+    <span class="texto-but">Cosas feas</span>
+  </button>
+</ion-content>

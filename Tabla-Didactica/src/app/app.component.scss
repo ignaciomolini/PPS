@@ -1,0 +1,30 @@
+.splash {
+  --background: none;
+  background: url("../assets/images/splash.png") no-repeat center / cover;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  background-color: #fe5f55;
+}
+
+@keyframes rotate-in-center {
+  0% {
+    -webkit-transform: rotate(-360deg) scale(0.9);
+    transform: rotate(-360deg) scale(0.9);
+  }
+  50% {
+    -webkit-transform: rotate(-180deg) scale(1);
+    transform: rotate(-180deg) scale(1);
+  }
+  100% {
+    -webkit-transform: rotate(0) scale(1.1);
+    transform: rotate(0) scale(1.1);
+  }
+}
+
+.icono {
+  animation: rotate-in-center 0.4s linear 3s both;
+}

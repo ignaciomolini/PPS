@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+	<ion-toolbar>
+		<img id="img_toolbar" src="../../assets/Tenedores.png" alt="" width="45">
+		<ion-button id="btn_toolbar" (click)="Volver()"><ion-icon name="arrow-undo"></ion-icon></ion-button>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+	<ion-grid>
+
+    <div class="contenido">
+
+      <div *ngIf="!cargando">
+        <img src="../../assets/cliente.png" alt="" width="50" height="50">
+        <h2>{{nombreUsuario}} {{apellidoUsuario}}</h2>
+        <div>
+          <div *ngFor="let e of encuestas">
+            <ion-item *ngIf="idUsuarioEncuesta == e.idUsuario && !cargandoNombre">
+              <ion-avatar slot="start">
+                <ion-img [src]="iconoEncuesta" style="width: 60px !important; height: 60px !important; margin-top: -10px;"></ion-img>
+              </ion-avatar>
+              <ion-label>
+                <p>Amable: {{e.amable}}</p>
+                <p>Higiene: {{e.higiene}}</p>
+                <p>Paciencia: {{e.paciencia}}</p>
+                <p>Respeto: {{e.respeto}}</p>
+                <p>Simpatía: {{e.simpatia}}</p>
+              </ion-label>
+            </ion-item>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="cargando">
+        <h2 style="margin-top: 50px; font-size: 40px;">Cargando historial</h2>
+      </div>
+
+    </div>
+
+	</ion-grid>
+</ion-content>
+
+<div class="custom-loading" *ngIf="spinner">
+	<div class="spinner">
+		<div class="double-bounce1"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+		<div class="double-bounce2"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+	</div>
+</div>

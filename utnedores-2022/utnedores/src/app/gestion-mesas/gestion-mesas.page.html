@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <img id="img_toolbar" src="../../assets/Tenedores.png" alt="" width="45">
+    <ion-button id="btn_toolbar" (click)="Volver()"><ion-icon name="arrow-undo"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <div class="contenido">
+      <img src="../../assets/table.png" alt="" width="50" height="50">
+      <h2>Gestionar Mesas</h2>
+
+      <div *ngIf="!cargando">
+          <div *ngIf="hayMesas">
+            <div *ngFor="let m of mesas">
+              <ion-item style="margin-top: 10px;">
+                <ion-avatar slot="start">
+                  <ion-img [src]="m.foto" style="border: 1px solid white; --border-radius: 4px; width: 60px !important; height: 60px !important;"></ion-img>
+                </ion-avatar>
+                <ion-label>
+                  <h2>Mesa {{m.numMesa}}</h2>
+                  <p>{{m.tipo}}</p>
+                  <p>Capacidad: {{m.capacidad}}</p>
+                  <ion-button style="--background: rgb(82, 27, 145);" (click)="Modificar(m.idField)">Modificar</ion-button>
+                  <ion-button *ngIf="m.idUsuario == '0'" style="--background: rgb(255, 0, 0);" (click)="Eliminar(m.idField)">Eliminar</ion-button>
+                  <ion-button *ngIf="m.idUsuario != '0'" style="--background: rgb(31, 190, 202);" (click)="Liberar(m.idField, m.idUsuario, m.numMesa)">Liberar</ion-button>
+                </ion-label>
+              </ion-item>
+            </div>
+          </div>
+          <div *ngIf="!hayMesas">
+            <h2 style="margin-top: 50px; font-size: 40px;">No se encontró ninguna mesa para gestionar</h2>
+          </div>
+
+      </div>
+      
+      <div *ngIf="cargando">
+        <h2 style="margin-top: 50px; font-size: 40px;">Cargando</h2>
+      </div>
+
+    </div>
+  </ion-grid>
+
+</ion-content>
+
+<div class="custom-loading" *ngIf="spinner">
+  <div class="spinner">
+    <div class="double-bounce1"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+    <div class="double-bounce2"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+  </div>
+</div>

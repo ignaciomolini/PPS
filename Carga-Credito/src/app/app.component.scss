@@ -1,0 +1,105 @@
+.splash {
+  --background: none;
+  background: url("../assets/images/splash.png") no-repeat center / cover;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  background-color: #0a9496;
+}
+
+@keyframes bounce-out-bottom {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  5% {
+    -webkit-transform: translateY(30px) scale(1.01);
+    transform: translateY(30px) scale(1.01);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  15% {
+    -webkit-transform: translateY(0) scale(1.02);
+    transform: translateY(0) scale(1.02);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  25% {
+    -webkit-transform: translateY(38px) scale(1.04);
+    transform: translateY(38px) scale(1.04);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  38% {
+    -webkit-transform: translateY(0) scale(1.06);
+    transform: translateY(0) scale(1.07);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  52% {
+    -webkit-transform: translateY(75px) scale(1.07);
+    transform: translateY(75px) scale(1.07);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  90% {
+    -webkit-transform: translateY(0) scale(1.08);
+    transform: translateY(0) scale(1.08);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+@keyframes shake-horizontal {
+  0%,
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translateX(-30px) scale(1.02);
+    transform: translateX(-30px) scale(1.02);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: translateX(30px) scale(1.05);
+    transform: translateX(30px) scale(1.05);
+  }
+  80% {
+    -webkit-transform: translateX(10px) scale(1.07);
+    transform: translateX(10px) scale(1.07);
+  }
+  90% {
+    -webkit-transform: translateX(-10px) scale(1.09);
+    transform: translateX(-10px) scale(1.09);
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+.tarjeta {
+  animation: shake-horizontal 1.5s linear 3s both;
+  position: absolute;
+}
+
+.peso {
+  animation: bounce-out-bottom 1.5s linear 3s both;
+  position: absolute;
+}
+
+

@@ -1,0 +1,15 @@
+.grafico {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80vh;
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 25px;
+    font-weight: bold;
+    background: #22577A;
+    background-clip: text;
+    color: transparent;
+  }
+}

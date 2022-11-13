@@ -1,0 +1,54 @@
+ion-content {
+  --background: radial-gradient(
+    circle,
+    rgba(128, 237, 153, 1) 0%,
+    rgba(108, 221, 153, 1) 50%,
+    rgba(87, 204, 153, 1) 100%
+  );
+}
+
+.bg-lindo {
+  background: url("../../assets/images/lindo2.png") no-repeat center / cover;
+}
+
+.bg-feo {
+  background: url("../../assets/images/feo2.png") no-repeat center / cover;
+  margin-top: 15px;
+}
+
+.boton {
+  width: 100%;
+  height: 49%;
+  border-radius: 10px;
+  border: 5px solid rgba(34, 87, 122, 0.9);
+  box-shadow: 0 0 10px 2px rgb(48, 132, 183);
+  transition: transform 0.3s;
+  display: flex;
+  justify-content: center;
+}
+
+.boton:active {
+  transform: scale(0.95);
+}
+
+.texto-but {
+  background-color: rgb(48, 132, 183, 0.9);
+  text-shadow: 4px 4px 6px black;
+  color: #A4F3B3;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 5px;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+ion-fab-button {
+  width: 40px;
+  height: 40px;
+  --background: #e75951;
+  transition: transform 0.3s;
+}
+
+ion-fab-button:active {
+  transform: scale(0.9);
+}

@@ -1,0 +1,128 @@
+ion-content {
+  --background: none;
+  background: url("../../assets/images/bg.svg") no-repeat center / cover;
+}
+
+@keyframes bounce-out-bottom {
+  66% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  72% {
+    transform: translateY(30px);
+    animation-timing-function: ease-in;
+  }
+  76% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  82% {
+    transform: translateY(38px);
+    animation-timing-function: ease-in;
+  }
+  88% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  94% {
+    transform: translateY(75px);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+}
+
+.logo {
+  margin-top: 90px;
+}
+
+.peso {
+  width: 100px;
+  position: absolute;
+  top: 45px;
+  z-index: -1;
+  animation: bounce-out-bottom 5s linear infinite both;
+}
+
+.tarjeta {
+  width: 250px;
+}
+
+.card {
+  background-color: rgba(180, 180, 180, 0.4);
+  backdrop-filter: blur(4px);
+  border: none;
+  border: 1px solid #ddece294;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px rgba(196, 196, 196, 0.8);
+  padding: 15px;
+  margin-top: 35px;
+  color: #0f3735;
+  h1,
+  h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  h2 {
+    margin-top: 25px;
+  }
+}
+
+.error-borde {
+  box-shadow: 0px 0px 3px 3px rgb(222, 52, 52);
+}
+
+.error {
+  font-size: 15.5px;
+  font-weight: 500;
+  color: rgb(222, 52, 52);
+}
+
+input {
+  background-color: #cfecd9;
+  border: 1px solid #066163 !important;
+  color: #0f3735;
+}
+
+input:focus {
+  background-color: #cfecd9;
+  color: #0f3735;
+}
+
+.btn {
+  background: radial-gradient(
+    circle,
+    rgba(10, 148, 150, 0.95) 0%,
+    rgba(6, 97, 99, 0.95) 100%
+  );
+  color: #cfecd9;
+  border: none;
+}
+.btn:hover {
+  background: radial-gradient(
+    circle,
+    rgba(10, 148, 150, 0.95) 0%,
+    rgba(6, 97, 99, 0.95) 100%
+  ) !important;
+  color: #cfecd9;
+}
+.btn:active {
+  transform: scale(0.97);
+  background: radial-gradient(
+    circle,
+    rgba(8, 116, 118, 0.95) 0%,
+    rgba(5, 75, 76, 0.95) 100%
+  ) !important;
+  color: #cfecd9;
+}
+.btn:focus {
+  background: radial-gradient(
+    circle,
+    rgba(8, 116, 118, 0.95) 0%,
+    rgba(5, 75, 76, 0.95) 100%
+  ) !important;
+  color: #cfecd9;
+}

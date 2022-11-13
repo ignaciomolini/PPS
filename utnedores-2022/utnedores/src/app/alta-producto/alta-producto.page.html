@@ -1,0 +1,171 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <img id="img_toolbar" src="../../assets/Tenedores.png" width="13%" />
+    <ion-button id="btn_toolbar" (click)="Volver()"
+      ><ion-icon name="arrow-undo"></ion-icon
+    ></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="contenedor">
+    <ion-grid>
+      <div class="contenido">
+        <div class="titulo_form">
+          <img src="../../assets/dessert.png" alt="" width="60" height="60" />
+          <h2>Alta de Producto</h2>
+        </div>
+        <form [formGroup]="formProducto" (ngSubmit)="AgregarProducto()">
+          <ion-select
+            id="categoria"
+            formControlName="categoria"
+            placeholder="Categoría"
+            (ionChange)="SelectChange()"
+            interface="popover"
+          >
+          <div *ngIf="tipo == 'Cocinero'">
+            <ion-select-option value="0">Entradas</ion-select-option>
+            <ion-select-option value="1">Promociones</ion-select-option>
+            <ion-select-option value="2">Platos fríos</ion-select-option>
+            <ion-select-option value="3">Platos calientes</ion-select-option>
+          </div>
+          <div *ngIf="tipo == 'Bartender'">
+            <ion-select-option value="4">Bebidas sin alcohol</ion-select-option>
+            <ion-select-option value="5">Bebidas con alcohol</ion-select-option>
+            <ion-select-option value="6">Postres y Café-Te</ion-select-option>
+          </div>
+          </ion-select>
+
+          <ion-input
+            formControlName="producto"
+            type="text"
+            placeholder="Producto"
+            maxlength="15"
+            [ngClass]="{'error-borde mb-0': (producto.dirty || producto.touched) && producto.errors}"
+          ></ion-input>
+          <ion-input
+            formControlName="descripcion"
+            type="text"
+            maxlength="15"
+            placeholder="Descripción"
+            [ngClass]="{'error-borde mb-0': (descripcion.dirty || descripcion.touched) && descripcion.errors}"
+          ></ion-input>
+          <ion-input
+            id="tiempoElab"
+            formControlName="tiempoElaboracion"
+            type="text"
+            maxlength="3"
+            placeholder="Tiempo de elaboración (Minutos)"
+            [ngClass]="{'error-borde': (tiempoElaboracion.dirty || tiempoElaboracion.touched) && tiempoElaboracion.errors}"
+          ></ion-input>
+          <ion-row class="pe-1">
+            <ion-col>
+              <ion-input
+                id="tamanio"
+                formControlName="tamanio"
+                maxlength="3"
+                type="text"
+                placeholder="Tamaño (l o ml)"
+                class="me-1"
+                [ngClass]="{'error-borde': (tamanio.dirty || tamanio.touched) && tamanio.errors}"
+              ></ion-input>
+            </ion-col>
+            <ion-col>
+              <ion-input
+                formControlName="precio"
+                type="text"
+                maxlength="5"
+                placeholder="Precio ($)"
+                class="ms-1"
+                [ngClass]="{'error-borde': (precio.dirty || precio.touched) && precio.errors}"
+              ></ion-input
+            ></ion-col>
+          </ion-row>
+
+          <ion-item style="--min-height: 90px">
+            <ion-thumbnail slot="start" style="margin-top: -10px">
+              <ion-img
+                [src]="srcProductPhoto[0]"
+                style="max-width: 100px; max-height: 100px"
+              ></ion-img>
+              <ion-icon
+                (click)="LimpiarFoto(0)"
+                style="margin-left: 20px; margin-top: 5px"
+                name="trash-outline"
+              ></ion-icon>
+            </ion-thumbnail>
+            <ion-thumbnail slot="start" style="margin-top: -10px">
+              <ion-img
+                [src]="srcProductPhoto[1]"
+                style="max-width: 100px; max-height: 100px"
+              ></ion-img>
+              <ion-icon
+                (click)="LimpiarFoto(1)"
+                style="margin-left: 20px; margin-top: 5px"
+                name="trash-outline"
+              ></ion-icon>
+            </ion-thumbnail>
+            <ion-thumbnail slot="start" style="margin-top: -10px">
+              <ion-img
+                [src]="srcProductPhoto[2]"
+                style="max-width: 100px; max-height: 100px"
+              ></ion-img>
+              <ion-icon
+                (click)="LimpiarFoto(2)"
+                style="margin-left: 20px; margin-top: 5px"
+                name="trash-outline"
+              ></ion-icon>
+            </ion-thumbnail>
+            <ion-button
+              (click)="Fotos()"
+              style="--background: rgb(71, 18, 18)"
+              [disabled]="fotosLleno"
+              ><ion-icon name="camera-outline"></ion-icon
+            ></ion-button>
+          </ion-item>
+          <ion-button
+            type="submit"
+            class="mt-3"
+            style="--background: rgb(15, 145, 58); height: 50px"
+            [disabled]="!formProducto.valid || !fotosLleno || !flagAux" 
+            ><ion-icon name="checkmark-circle-outline"></ion-icon>AGREGAR
+            PRODUCTO</ion-button
+          >
+        </form>
+      </div>
+    </ion-grid>
+
+    <input
+      hidden
+      id="inputFiles"
+      class="custom-file-input"
+      type="file"
+      (change)="Cargar($event)"
+      multiple="multiple"
+    />
+  </div>
+</ion-content>
+
+<div class="custom-loading" *ngIf="spinner">
+  <div class="spinner">
+    <div class="double-bounce1">
+      <img src="../../assets/Logo.png" style="width: 200px" />
+    </div>
+    <div class="double-bounce2">
+      <img src="../../assets/Logo.png" style="width: 200px" />
+    </div>
+  </div>
+</div>
+
+<!--qrcode *ngIf="mostrarQr" (qrCodeURL)="onChangeURL($event)" [qrdata]="myAngularxQrCode" [width]="128" [errorCorrectionLevel]="'M'"></qrcode-->
+
+<div class="custom-loading2" *ngIf="productoAgregado">
+
+	<div class="divInterno2">
+		<form class="form">
+			<h2 style="margin-top: 30px;">Producto agregado con éxito!</h2>
+      <h2 style="margin-top: 40px;">Redirigiendo</h2>
+		</form>
+	</div>
+
+</div>

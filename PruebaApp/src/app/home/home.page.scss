@@ -1,0 +1,15 @@
+ion-toolbar{
+  --background: none;
+  background: rgb(233,216,166);
+  background: linear-gradient(90deg, rgba(233,216,166,1) 0%, rgba(0,18,25,1) 100%);  
+}
+
+ion-content{
+  --background: none;
+  background: rgb(0,18,25);
+  background: linear-gradient(90deg, rgba(0,18,25,1) 0%, rgba(233,216,166,1) 100%);   
+}
+
+span{
+  margin-top: 300px;
+}

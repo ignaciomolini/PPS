@@ -1,0 +1,104 @@
+<ion-content class="ion-padding">
+  <div class="rombo"></div>
+  <div class="logo ion-text-center">
+    <img src="../../assets/images/iconoSolo2.png" alt="logo" width="250px" />
+  </div>
+
+  <form [formGroup]="formLogin" (ngSubmit)="login()" class="margin-form">
+    <h1 class="text-center formato mb-3">Inicio de sesión</h1>
+    <div
+      [ngClass]="((email.dirty || email.touched) && email.errors) ? 'mb-1' : 'mb-3'"
+    >
+      <input
+        formControlName="email"
+        type="email"
+        class="form-control border border-primary"
+        placeholder="Correo electrónico"
+        [class.error-borde]="(email.dirty || email.touched) && email.errors"
+      />
+      <small
+        class="text-danger error"
+        *ngIf="(email.dirty || email.touched) && email.errors"
+      >
+        Correo electrónico inválido
+      </small>
+    </div>
+    <div
+      [ngClass]="((password.dirty || password.touched) && password.errors) ? 'mb-1' : 'mb-3'"
+    >
+      <input
+        formControlName="password"
+        type="password"
+        class="form-control border border-primary"
+        placeholder="Contraseña"
+        [class.error-borde]="(password.dirty || password.touched) && password.errors"
+      />
+      <small
+        class="text-danger error"
+        *ngIf="(password.dirty || password.touched) && password.errors"
+      >
+        La contraseña debe tener 6 o mas caracteres
+      </small>
+    </div>
+    <div class="d-grid">
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="!formLogin.valid"
+      >
+        Ingresar
+      </button>
+    </div>
+  </form>
+
+  <div class="card">
+    <h2 class="text-center formato">Acceso rápido</h2>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-4">
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="radio"
+              id="admin"
+              value="admin"
+              (change)="accesoRapido('admin')"
+            />
+            <label class="form-check-label" for="admin"> admin </label>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="radio"
+              id="invitado"
+              value="invitado"
+              (change)="accesoRapido('invitado')"
+            />
+            <label class="form-check-label" for="invitado">
+              invitado
+            </label>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="radio"
+              id="usuario"
+              value="usuario"
+              (change)="accesoRapido('usuario')"
+            />
+            <label class="form-check-label" for="usuario">
+              usuario
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

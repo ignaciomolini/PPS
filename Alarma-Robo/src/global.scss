@@ -1,0 +1,154 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+@import url("https://fonts.googleapis.com/css2?family=KoHo:wght@400;500;600;700&display=swap");
+
+@keyframes heartbeat {
+  from {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  10% {
+    -webkit-transform: scale(0.91);
+    transform: scale(0.91);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  17% {
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  33% {
+    -webkit-transform: scale(0.87);
+    transform: scale(0.87);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  45% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+}
+
+.loader-css-class {
+  --background: #5d5d5d;
+  .loading-wrapper {
+    padding: 0px !important;
+    border-radius: 30px;
+  }
+  img {
+    width: 150px;
+    animation: heartbeat 1s ease-in-out infinite both;
+  }
+}
+
+* {
+  font-family: "KoHo", sans-serif;
+  font-size: large;
+}
+
+//*****************************// SWALFIRE2
+
+.btn-swal2 {
+  background-color: #d9e3f1 !important;
+}
+
+.swal2-container {
+  padding: 24px !important;
+}
+
+.swal2-html-container {
+  margin: 22.5px !important;
+}
+
+.swal2-popup {
+  background-color: #d9e3f1 !important;
+  color: #7b8ab8 !important;
+  padding: 0 !important;
+}
+
+.backdrop {
+  background: rgba(252, 0, 0, 0.5);
+}
+
+//*****************************//
+
+.toast-success {
+  background-image: linear-gradient(
+    270deg,
+    rgba(0, 255, 0, 0.5) 0%,
+    rgba(50, 255, 0, 0.5) 50%,
+    rgba(100, 255, 0, 0.5) 100%
+  );
+  background-size: 500% 500%;
+  animation: gradient 1s ease infinite;
+  --background: radial-gradient(
+    circle,
+    rgb(0, 140, 0) 0%,
+    rgb(0, 110, 0) 100%
+  );
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  --border-radius: 10px;
+}
+
+.toast-error {
+  background-image: linear-gradient(
+    270deg,
+    rgba(255, 0, 0, 0.5) 0%,
+    rgba(255, 50, 0, 0.5) 50%,
+    rgba(255, 100, 0, 0.5) 100%
+  );
+  background-size: 500% 500%;
+  animation: gradient 1s ease infinite;
+  --background: radial-gradient(circle, rgb(140, 0, 0) 0%, rgb(110, 0, 0) 100%);
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  --border-radius: 10px;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

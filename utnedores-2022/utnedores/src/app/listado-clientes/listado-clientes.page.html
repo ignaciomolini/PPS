@@ -1,0 +1,67 @@
+<ion-header [translucent]="true">
+	<ion-toolbar>
+		<img id="img_toolbar" src="../../assets/Tenedores.png" alt="" width="45">
+		<ion-button id="btn_toolbar" (click)="Volver()"><ion-icon name="arrow-undo"></ion-icon></ion-button>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+	<ion-grid>
+		<div class="contenido">
+			<img src="../../assets/cliente.png" alt="" width="50" height="50">
+			<h2>Clientes Pendientes</h2>
+
+      <div *ngIf="!cargando">
+
+        <div *ngIf="hayPendientes">
+          <div *ngFor="let u of users">
+            <ion-item *ngIf="u.perfil=='Cliente' && u.tipo == 'Registrado' && u.aprobado == 'No'">
+              <ion-avatar slot="start">
+                <ion-img [src]="u.foto" style="border: 1px solid white; --border-radius: 4px; width: 60px !important; height: 60px !important;"></ion-img>
+              </ion-avatar>
+              <ion-label>
+                <h2>{{u.nombre}} {{u.apellido}}</h2>
+                <p>{{u.correo}}</p>
+                <p>DNI: {{u.dni}}</p>
+                <ion-button style="--background: rgb(8, 153, 8);" (click)="AprobarCliente(u.idField, u.correo, u.clave, u.nombre)"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-button>
+                <ion-button style="--background: rgb(134, 7, 7);" (click)="RechazarCliente(u.idField, u.correo)"><ion-icon name="close-circle-outline"></ion-icon></ion-button>
+              </ion-label>
+            </ion-item>
+          </div>
+        </div>
+
+        <div *ngIf="!hayPendientes">
+          <h2 style="margin-top: 50px; font-size: 40px;">No hay clientes pendientes de aprobación</h2>
+        </div>
+      
+
+      </div>
+      <div *ngIf="cargando">
+        <h2 style="margin-top: 50px; font-size: 40px;">Cargando lista</h2>
+      </div>
+
+    </div>
+	</ion-grid>
+</ion-content>
+
+<div class="custom-loading" *ngIf="spinner">
+	<div class="spinner">
+		<div class="double-bounce1"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+		<div class="double-bounce2"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+	</div>
+</div>
+
+
+
+
+
+<div class="custom-loading2" *ngIf="ingresarMotivoRechazo">
+	<div class="divInterno2">
+		<form class="form">
+			<h2>Motivo del Rechazo</h2>
+      <ion-input id="motivoRechazo" placeholder="Ingrese el motivo"></ion-input>
+			<ion-button (click)="AceptarRechazo()" style="width: 70%; margin-top: 5px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Aceptar</ion-button>
+			<ion-button (click)="CancelarRechazo()" style="width: 70%; margin-top: 5px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Cancelar</ion-button>
+		</form>
+	</div>
+</div>

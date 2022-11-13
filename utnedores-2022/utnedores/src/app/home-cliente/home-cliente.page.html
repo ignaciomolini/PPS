@@ -1,0 +1,86 @@
+<ion-header [translucent]="true" [hidden]="scanActive">
+	<ion-toolbar>
+		<img id="img_toolbar" src="../../assets/Tenedores.png" alt="" width="45">
+		<ion-button id="btn_toolbar" (click)="CerrarSesion()">
+			<ion-icon name="log-out-outline" style="transform: scaleX(-1);"></ion-icon>
+		</ion-button>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [hidden]="scanActive">
+	<ion-grid>
+		<div class="contenido">
+			<img src="../../assets/cliente.png" alt="" width="50" height="50">
+			<h2>Cliente</h2>
+			<div>
+				<button (click)="IrEncuestas()"><img src="../../assets/home-cliente/ver-encuestas.png" width="30" height="30"><br>Encuestas</button>
+			</div>
+			<div>
+				<button (click)="startScanner()"><img src="../../assets/home-cliente/escanear-qr.png" width="30" height="30"><br>Escanear QR</button>
+			</div>
+			<div>
+				<!--button *ngIf="esRegistrado" (click)="IrReservar()" ><img src="../../assets/home-cliente/reservar.png" width="30" height="30"><br>Reservar</button-->
+				<button style="color: rgb(133, 133, 133);" ><img src="../../assets/home-cliente/sinreserva.png" width="30" height="30"><br>Reservar</button>				
+			</div>
+		</div>
+		<div id="msjEstado">
+			{{mensajeEstado}}
+		</div>
+	</ion-grid>
+	<ion-fab horizontal="end" vertical="bottom" >
+		<ion-fab-button size="small" (click)="ActivarDesactivarSonido()">
+			<ion-icon *ngIf="volumenOn" name="volume-high-outline"></ion-icon>
+			<ion-icon *ngIf="!volumenOn" name="volume-mute-outline"></ion-icon>
+		</ion-fab-button>
+	</ion-fab>
+</ion-content>
+
+<ion-row class="scanner-buttons" [hidden]="!scanActive">
+	<ion-col class="ion-no-padding">
+	  <ion-button expand="full" (click)="stopScan()">Detener</ion-button>
+	</ion-col>
+</ion-row>
+
+<div class="scan-box" [hidden]="!scanActive">
+</div>
+
+<div class="custom-loading" *ngIf="spinner">
+	<div class="spinner">
+		<div class="double-bounce1"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+		<div class="double-bounce2"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+	</div>
+</div>
+
+
+
+
+
+
+
+<div class="custom-loading2" *ngIf="ingresarCantidad">
+
+	<div class="divInterno2">
+		<form class="form">
+			<h2>Cantidad de personas</h2>
+			<p>
+				<ion-button (click)="Restar()" fill="clear">-</ion-button>
+					{{cantidadPersonas}}
+				<ion-button (click)="Sumar()" fill="clear">+</ion-button>
+			</p>
+			<ion-segment value="Estándar" (ionChange)="SetTipoMesa($event)">
+				<ion-segment-button value="Estándar">
+				  <ion-label>Estándar</ion-label>
+				</ion-segment-button>
+				<ion-segment-button value="VIP">
+				  <ion-label>VIP</ion-label>
+				</ion-segment-button>
+				<ion-segment-button value="Discapacitados">
+				  <ion-label>Discapacitados</ion-label>
+				</ion-segment-button>
+			</ion-segment>
+			<ion-button (click)="Aceptar()" style="width: 70%; margin-top: 5px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Aceptar</ion-button>
+			<ion-button (click)="Cancelar()" style="width: 70%; margin-top: 5px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Cancelar</ion-button>
+		</form>
+	</div>
+
+</div>

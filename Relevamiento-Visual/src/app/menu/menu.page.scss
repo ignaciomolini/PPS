@@ -1,0 +1,68 @@
+ion-content {
+  --background: radial-gradient(
+    circle,
+    rgba(128, 237, 153, 1) 0%,
+    rgba(65, 202, 170, 1) 70%,
+    rgba(56, 163, 165, 1) 100%
+  );
+}
+
+.titulo {
+  border-bottom: 5px solid transparent;
+  border-color: rgba(24, 78, 119, 1);
+  border-image-slice: 1;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.fuente {
+  margin-top: 20px;
+  font-size: 40px;
+  font-weight: bold;
+  background: rgba(24, 78, 119, 1);
+  background-clip: text;
+  color: transparent;
+}
+
+button {
+  background: linear-gradient(
+    90deg,
+    rgba(24, 78, 119, 0.9) 0%,
+    rgba(30, 96, 145, 0.9) 50%,
+    rgba(26, 117, 159, 0.9) 100%
+  );
+  width: 90%;
+  height: 7rem;
+  font-size: 28px;
+  font-weight: bold;
+  color: #a4f3b3;
+  transition: transform 0.3s;
+}
+
+button:active {
+  transform: scale(0.95);
+  // background: linear-gradient(
+  //   90deg,
+  //   rgba(26, 117, 159, 0.9) 0%,
+  //   rgba(30, 96, 145, 0.9) 50%,
+  //   rgba(24, 78, 119, 0.9) 100%
+  // );
+}
+
+button:hover {
+  color: #a4f3b3 !important;
+}
+
+button:focus {
+  border: none;
+  color: #a4f3b3 !important;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  margin-top: 10px;
+  height: 85%;
+}

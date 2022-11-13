@@ -1,0 +1,78 @@
+<ion-content class="ion-padding">
+  <div class="logo ion-text-center">
+    <img src="../../assets/images/iconoSolo2.png" alt="logo" width="250px" />
+  </div>
+
+  <div class="d-grid gap-2 dropdown">
+    <button
+      class="btn btn-dropdown"
+      type="button"
+      data-bs-toggle="dropdown"
+    >
+    Acceso rápido <img src="../../assets/images/drop.png" width="10px" height="10px">
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" (click)="accesoRapidoAdmin()">admin</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" (click)="accesoRapidoInvitado()">invitado</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" (click)="accesoRapidoUsuario()">usuario</a></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h1>Inicio de sesión</h1>
+    <form [formGroup]="formLogin" (ngSubmit)="login()">
+      <div
+        class="form-floating"
+        [ngClass]="((email.dirty || email.touched) && email.errors) ? 'mb-1' : 'mb-3'"
+      >
+        <input
+          formControlName="email"
+          type="email"
+          class="form-control border border-primary"
+          placeholder="Correo electrónico"
+          id="floatingEmail"
+          [class.error-borde]="(email.dirty || email.touched) && email.errors"
+        />
+        <label for="floatingEmail" class="text-secondary"
+          >Correo electrónico</label
+        >
+        <small
+          class="error"
+          *ngIf="(email.dirty || email.touched) && email.errors"
+        >
+          Correo electrónico invalido
+        </small>
+      </div>
+      <div
+        class="form-floating"
+        [ngClass]="((password.dirty || password.touched) && password.errors) ? 'mb-1' : 'mb-3'"
+      >
+        <input
+          formControlName="password"
+          type="password"
+          class="form-control border border-primary"
+          placeholder="Contraseña"
+          id="floatingPassword"
+          [class.error-borde]="(password.dirty || password.touched) && password.errors"
+        />
+        <label for="floatingPassword" class="text-secondary">Contraseña</label>
+        <small
+          class="error"
+          *ngIf="(password.dirty || password.touched) && password.errors"
+        >
+          La contraseña debe tener por lo menos 6 caracteres
+        </small>
+      </div>
+      <div class="d-grid">
+        <button
+          class="btn btn-lg"
+          type="submit"
+          [disabled]="!formLogin.valid"
+        >
+          Ingresar
+        </button>
+      </div>
+    </form>
+  </div>
+</ion-content>

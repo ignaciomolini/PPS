@@ -1,0 +1,128 @@
+<ion-header [translucent]="true">
+	<ion-toolbar>
+		<img id="img_toolbar" src="../../assets/Tenedores.png" alt="" width="45">
+		<ion-button id="btn_toolbar" (click)="Volver()"><ion-icon name="arrow-undo"></ion-icon></ion-button>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+	<ion-grid>
+		<div class="contenido">
+			<img src="../../assets/cliente.png" alt="" width="50" height="50">
+			<h2>Clientes en Espera</h2>
+
+      <div *ngIf="hayEnEspera">
+        <div *ngFor="let c of listado">
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-img [src]="c.foto" style="border: 1px solid white; --border-radius: 4px; width: 60px !important; height: 60px !important;"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2>{{c.nombre}} {{c.apellido}}</h2>
+              <p>{{c.fecha}} {{c.hora}}</p>
+              <p>Comensales: {{c.cantPersonas}}</p>
+              <p>Preferencia: {{c.preferencia}}</p>
+              <ion-button style="--background: rgb(255, 0, 0);" (click)="EliminarEspera(c.idField)">Eliminar</ion-button>
+              <ion-button style="--background: rgb(27, 27, 27);" (click)="setOpen(c.cantPersonas, c.idField, c.idUsuario)">Asignar Mesa</ion-button>
+            </ion-label>
+          </ion-item>
+        </div>
+      </div>
+
+      <div *ngIf="!hayEnEspera">
+        <h2 style="margin-top: 50px; font-size: 40px;">No hay clientes en espera</h2>
+      </div>
+
+    </div>
+
+    <div class="custom-loading2" *ngIf="eliminarEspera">
+      <div class="divInterno3">
+        <form class="form">
+          <h2>¿Eliminar espera?</h2>
+          <ion-button (click)="AceptarEliminarEspera()" style="width: 70%; margin-top: 5px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Eliminar</ion-button>
+          <ion-button (click)="CancelarEliminarEspera()" style="width: 70%; margin-top: 5px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Cancelar</ion-button>
+        </form>
+      </div>
+    </div>
+	</ion-grid>
+
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header [translucent]="true">
+        <ion-toolbar>
+          <img id="img_toolbar" src="../../assets/Tenedores.png" alt="" width="45">
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div class="contenido">
+          <h2>Mesas disponibles</h2>
+          <div *ngFor="let m of mesas">
+            <ion-item *ngIf="m.idUsuario == '0'" style="margin-top: 10px;" [class.borde-verde]="mesaSeleccionada[m.numMesa]">
+              <ion-avatar slot="start">
+                <ion-img [src]="m.foto" style="border: 1px solid white; --border-radius: 4px; width: 60px !important; height: 60px !important;"></ion-img>
+              </ion-avatar>
+              <ion-label>
+                <h2>Mesa {{m.numMesa}}</h2>
+                <p>{{m.tipo}}</p>
+                <p>Capacidad: {{m.capacidad}}</p>
+                <ion-button style="--background: rgb(27, 27, 27);" (click)="SeleccionarMesa(m.numMesa, m.capacidad)">Marcar / Desmarcar</ion-button>
+              </ion-label>
+            </ion-item>
+          </div>
+
+          <h2>Mesas no disponibles</h2>
+
+          <div *ngFor="let m of mesas;">
+            <ion-item *ngIf="m.idUsuario != '0'" style="margin-top: 10px;" class="borde-gris">
+              <ion-avatar slot="start">
+                <ion-img [src]="m.foto" style="border: 1px solid white; --border-radius: 4px; width: 60px !important; height: 60px !important;"></ion-img>
+              </ion-avatar>
+              <ion-label>
+                <h2>Mesa {{m.numMesa}}</h2>
+                <p>{{m.tipo}}</p>
+                <p>Capacidad: {{m.capacidad}}</p>
+                <ion-button disabled style="--background: rgb(27, 27, 27);">Marcar / Desmarcar</ion-button>
+              </ion-label>
+            </ion-item>
+          </div>
+        </div>
+      </ion-content>
+
+      <ion-footer collapse="fade">
+        <ion-toolbar>
+          <div class="encabezado">
+            <img src="../../assets/comensales.png" alt="" width="35" style="margin-bottom: 7px; filter: invert(100%); margin-right: 5px;">
+            <label style="font-size:1.3em; margin-right: 5px;">{{cantidadComensales}}</label>
+            <img src="../../assets/silla.png" alt="" width="35" style="margin-bottom: 10px; filter: invert(100%); margin-right: 5px;">
+            <label style="font-size:1.3em; margin-right: 5px;">{{cantidadSeleccionada}}</label>
+            <ion-button (click)="AsignarMesas()" [disabled]="cantidadSeleccionada == 0">Asignar</ion-button>
+            <ion-button (click)="back()">Listado</ion-button>
+          </div>
+        </ion-toolbar>
+      </ion-footer>
+
+      <div class="custom-loading2" *ngIf="asignar">
+        <div class="divInterno2">
+          <form class="form">
+            <h2>Comensales: {{cantidadComensales}}</h2>
+            <h2>Lugares: {{cantidadSeleccionada}}</h2>
+            <h2>{{mensajeLugares}}</h2>
+            <ion-button (click)="AceptarAsignar()" style="width: 70%; margin-top: 5px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Asignar</ion-button>
+            <ion-button (click)="CancelarAsignar()" style="width: 70%; margin-top: 5px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Cancelar</ion-button>
+          </form>
+        </div>
+      </div>
+
+    </ng-template>
+  </ion-modal>
+
+</ion-content>
+
+<div class="custom-loading" *ngIf="spinner">
+	<div class="spinner">
+		<div class="double-bounce1"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+		<div class="double-bounce2"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+	</div>
+</div>
+
+

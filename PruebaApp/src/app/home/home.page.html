@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center text-black"> Inicio </ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="position-absolute end-0" color="medium" (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-text-center">
+  <ion-grid>
+    <ion-row class="justify-content-center">
+      <ion-col size="6">
+        <span class="badge bg-dark fs-1">Bienvenido!</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

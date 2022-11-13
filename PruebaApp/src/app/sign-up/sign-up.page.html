@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center text-black">Registro</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="login" class="position-absolute"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="logo ion-text-center">
+    <img src="../../assets/icon2.png" alt="logo">
+  </div>
+  <ion-card class="form bg-form">
+    <form [formGroup]="formRegister" (ngSubmit)="register()" class="bg-form">
+      <ion-item lines="full" class="bg-form">
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input formControlName="name" type="text"></ion-input>
+        <ion-note
+          slot="error"
+          *ngIf="(name.dirty || name.touched) && name.errors"
+          >El nombre debe tener por lo menos 3 caracteres</ion-note
+        >
+      </ion-item>
+      <ion-item lines="full" class="bg-form">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+        <ion-note
+          slot="error"
+          *ngIf="(email.dirty || email.touched) && email.errors"
+          >Email invalido</ion-note
+        >
+      </ion-item>
+      <ion-item lines="full" class="bg-form">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+        <ion-note
+          slot="error"
+          *ngIf="(password.dirty || password.touched) && password.errors"
+          >La contraseña debe tener por lo menos 6 caracteres</ion-note
+        >
+      </ion-item>
+      <ion-button
+        type="submit"
+        expand="full"
+        [disabled]="!formRegister.valid"
+        class="m-3 mt-4 bg-b"
+        >Registrate</ion-button
+      >
+    </form>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,120 @@
+<ion-header [translucent]="true" [hidden]="scanActive">
+  <ion-toolbar>
+    <img id="img_toolbar" src="../../assets/Tenedores.png" alt="" width="45" />
+    <ion-button id="btn_toolbar" (click)="CerrarSesion()">
+      <ion-icon name="log-out-outline" style="transform: scaleX(-1)"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [hidden]="scanActive">
+  <ion-grid>
+    <div class="contenido">
+      <img src="../../assets/mozo.png" alt="" width="50" height="50" />
+      <h2>Mozo</h2>
+
+      <div style="margin-top: 15px">
+        <button (click)="startScanner()">
+          <img
+            src="../../assets/dessert.png"
+            width="30"
+            height="30"
+          /><br />Ordenar<br />Pedido
+        </button>
+        <button (click)="VerPedidos()">
+          <img
+            src="../../assets/pedidos-listos.png"
+            width="30"
+            height="30"
+          /><br />Ver<br />Pedidos
+          <label style="color: rgb(196, 145, 255)" *ngIf="cantPedidos != 0"
+            >x{{cantPedidos}}</label
+          >
+        </button>
+        <button (click)="CierreMesa()">
+          <img
+            src="../../assets/cierre-mesa.png"
+            width="30"
+            height="30"
+          /><br />Cierre<br />Mesa
+          <span style="color: rgb(196, 145, 255)" *ngIf="cantCierreMesas != 0"
+            >x{{cantCierreMesas}}</span
+          >
+        </button>
+        <!--button (click)="PedidosListos()"><img src="../../assets/ver-pedidos-mozo.png" width="30" height="30"><br>Pedidos<br>Listos <label style="color:rgb(196, 145, 255);" *ngIf="cantPedidosListos != 0">x{{cantPedidosListos}}</label></button-->
+        <button (click)="ChatClientes()">
+          <img
+            src="../../assets/home-cliente/chat.png"
+            width="30"
+            height="30"
+          /><br />Chat<br />Clientes
+          <span style="color: rgb(196, 145, 255)" *ngIf="cantChat != 0"
+            >x{{cantChat}}</span
+          >
+        </button>
+      </div>
+    </div>
+  </ion-grid>
+  <ion-fab horizontal="end" vertical="bottom" [hidden]="scanActive">
+    <ion-fab-button size="small" (click)="ActivarDesactivarSonido()">
+      <ion-icon *ngIf="volumenOn" name="volume-high-outline"></ion-icon>
+      <ion-icon *ngIf="!volumenOn" name="volume-mute-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<ion-modal [isOpen]="isModalOpen || isModalOpen2">
+  <ng-template>
+    <ion-header [translucent]="true">
+      <ion-toolbar>
+        <img
+          id="img_toolbar"
+          src="../../assets/Tenedores.png"
+          alt=""
+          width="45"
+        />
+        <ion-button id="btn_footer3" (click)="volver()"
+          >Volver al Menú</ion-button
+        >
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <div *ngIf="chats?.length == 0"><h2 style="margin-top: 50px; font-size: 40px;">No hay chats por el momento</h2></div>
+      <div *ngIf="chats?.length > 0" class="contenido">
+        <h1>Chats Disponibles</h1>
+        <div *ngFor="let c of chats" class="mb-3">
+          <ion-item class="item-chats" (click)="entrarChat(c.numMesa)" [class.borde-noti]="!c.leido">
+            <div class="noti" *ngIf="!c.leido">!
+            </div>
+            <ion-avatar slot="start">
+              <ion-img [src]="cargarFoto(c.numMesa)" class="img-mesa"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2 class="text-center">Chat mesa {{c.numMesa}}</h2>
+            </ion-label>
+          </ion-item>
+        </div>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-row class="scanner-buttons" [hidden]="!scanActive">
+  <ion-col class="ion-no-padding">
+    <ion-button expand="full" (click)="stopScan()">Detener</ion-button>
+  </ion-col>
+</ion-row>
+
+<div class="scan-box" [hidden]="!scanActive"></div>
+
+<div class="custom-loading" *ngIf="spinner">
+  <div class="spinner">
+    <div class="double-bounce1">
+      <img src="../../assets/Logo.png" style="width: 200px" />
+    </div>
+    <div class="double-bounce2">
+      <img src="../../assets/Logo.png" style="width: 200px" />
+    </div>
+  </div>
+</div>

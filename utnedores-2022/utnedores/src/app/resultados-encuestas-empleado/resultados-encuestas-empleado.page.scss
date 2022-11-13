@@ -1,0 +1,240 @@
+ion-header, ion-footer {
+    text-align: center !important;
+  
+    ion-toolbar {
+      --background: linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgb(0, 0, 0) 100%
+      );
+      padding-top: 10px;
+      padding-bottom: 10px;
+  
+      ion-title {
+        color: white;
+      }
+    }
+  }
+  
+  ion-content {
+    --background: linear-gradient(
+      45deg,
+      rgba(123, 46, 17, 0.8) 0%,
+      rgb(206, 170, 156) 100%
+    );
+  }
+  
+  hr {
+    margin: 0;
+    opacity: 0.75;
+    border-top: 2px solid white;
+  }
+  
+  .preguntas {
+    background: rgba(46, 17, 3, 0.3);
+    border: 2px solid white;
+    border-radius: 5px;
+    margin-bottom: 2px;
+    color: #fff;
+  }
+  
+  ion-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+  }
+  
+  ion-col {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0;
+    ion-radio {
+      margin-left: 4px;
+    }
+  }
+  
+  ion-item {
+    --background: none;
+    ion-label {
+      padding-right: 5px;
+      color: #fff;
+    }
+  }
+  
+  .scroll{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 65vh;
+  }
+  
+  .scroll::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  
+  .scroll::-webkit-scrollbar-thumb {
+    background: rgba(46, 17, 3, 0.3);
+    border-radius: 10px;
+  }
+  
+  .row-nombre{
+    background: rgba(46, 17, 3, 0.3);
+  }
+  
+  .img-lugar{
+    height: 60px;
+    width: 80px;
+    border: 2px solid white;
+  }
+  
+  .contenedor {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .titulo_form {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2 {
+      font-size: 25px;
+      color: white;
+      margin-left: 5px;
+    }
+  }
+  
+  .titulo_estadisticas {
+    margin-top: 40px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2 {
+      font-size: 30px;
+      color: white;
+      margin: 10px;
+    }
+  }
+  
+  #btn_footer {
+    margin-right: 10px;
+    height: 30px;
+    --background: rgb(82, 27, 145);
+  }
+  
+  #img_toolbar {
+    float: right;
+    margin-right: 10px;
+  }
+  
+  #btn_toolbar {
+    width: 15%;
+    float: left;
+    margin-left: 10px;
+    --background: rgb(82, 27, 145);
+  }
+  
+  .spinner {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    margin: 100px auto;
+  }
+  
+  .double-bounce1,
+  .double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: transparent;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+  
+    -webkit-animation: sk-bounce 2s infinite ease-in-out;
+    animation: sk-bounce 2s infinite ease-in-out;
+  }
+  
+  .double-bounce2 {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+  }
+  
+  @-webkit-keyframes sk-bounce {
+    0%,
+    100% {
+      -webkit-transform: scale(0);
+    }
+  
+    50% {
+      -webkit-transform: scale(1);
+    }
+  }
+  
+  @keyframes sk-bounce {
+    0%,
+    100% {
+      transform: scale(0);
+      -webkit-transform: scale(0);
+    }
+  
+    50% {
+      transform: scale(1);
+      -webkit-transform: scale(1);
+    }
+  }
+  
+  .custom-loading {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    background: rgba(2, 2, 2, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .custom-loading2 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    background: rgba(2, 2, 2, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .divInterno2 {
+    width: 80%;
+    height: 180px;
+    border-style: solid;
+    border-color: rgb(206, 170, 156);
+    background-color: rgb(11, 6, 3);
+  
+    .form {
+      text-align: center;
+  
+      h2 {
+        color: rgb(206, 170, 156);
+        font-size: 15px;
+      }
+  
+      ion-button {
+        color: rgb(206, 170, 156);
+        font-size: 25px;
+      }
+    }
+  }
+  

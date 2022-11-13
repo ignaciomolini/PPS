@@ -1,0 +1,68 @@
+<ion-content class="ion-padding">
+  <div class="logo ion-text-center">
+    <img src="../../assets/images/iconoSolo2.png" alt="logo" width="250px" />
+  </div>
+
+  <div class="d-grid dropdown-center margin-acceso">
+    <button
+      class="btn dropdown-toggle"
+      type="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      Acceso rápido
+    </button>
+    <ul class="dropdown-menu text-center p-0">
+      <li><a class="dropdown-item" (click)="accesoRapidoAdmin()">admin</a></li>
+      <li>
+        <a class="dropdown-item" (click)="accesoRapidoInvitado()">invitado</a>
+      </li>
+      <li>
+        <a class="dropdown-item" (click)="accesoRapidoUsuario()">usuario</a>
+      </li>
+    </ul>
+  </div>
+
+  <form [formGroup]="formLogin" (ngSubmit)="login()" class="margin-form">
+    <h1 class="text-center mb-3">Inicio de sesión</h1>
+    <div
+      [ngClass]="((email.dirty || email.touched) && email.errors) ? 'mb-1' : 'mb-3'"
+    >
+      <input
+        formControlName="email"
+        type="email"
+        class="form-control border border-primary"
+        placeholder="Correo electrónico"
+        [class.error-borde]="(email.dirty || email.touched) && email.errors"
+      />
+      <small
+        class="error"
+        *ngIf="(email.dirty || email.touched) && email.errors"
+      >
+        Correo electrónico inválido
+      </small>
+    </div>
+    <div
+      [ngClass]="((password.dirty || password.touched) && password.errors) ? 'mb-1' : 'mb-3'"
+    >
+      <input
+        formControlName="password"
+        type="password"
+        class="form-control border border-primary"
+        placeholder="Contraseña"
+        [class.error-borde]="(password.dirty || password.touched) && password.errors"
+      />
+      <small
+        class="error"
+        *ngIf="(password.dirty || password.touched) && password.errors"
+      >
+        La contraseña debe tener 6 o mas caracteres
+      </small>
+    </div>
+    <div class="d-grid">
+      <button class="btn" type="submit" [disabled]="!formLogin.valid">
+        Ingresar
+      </button>
+    </div>
+  </form>
+</ion-content>

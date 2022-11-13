@@ -1,0 +1,76 @@
+<ion-header [translucent]="true" [hidden]="scanActive">
+	<ion-toolbar>
+		<img id="img_toolbar" src="../../assets/Tenedores.png" alt="" width="45">
+		<ion-button id="btn_toolbar" (click)="Volver()"><ion-icon name="arrow-undo"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [hidden]="scanActive">
+
+	<ion-grid style="margin-top: -30px">
+		<div class="contenido">
+
+      <div *ngIf="!cargando">
+        <div *ngIf="hayCuenta">
+
+            <div *ngIf="cierrePendiente">
+              <h2>Cierres de caja pendientes</h2>
+
+              <div *ngFor="let cp of cierresPendientes">
+                <ion-item>
+                  <ion-label style="height: 120px;">
+                    <h4>Mesa: {{cp.mesas}}</h4>
+                    <h4>Consumo: ${{cp.consumo}}</h4>
+                    <h4>Propina: ${{cp.propina}}</h4>
+                    <h4>Total: ${{cp.total}}</h4>
+                  </ion-label>
+                  <ion-avatar slot="end">
+                    <ion-button style="margin-top:-40px;" id="btnVerPedidos" (click)="Cerrar(cp.idField, cp.idUsuario)">Cerrar</ion-button>
+                  </ion-avatar>
+                </ion-item>
+              </div>
+
+
+            </div>
+
+            <div *ngIf="cierreListo">
+              <h2>Cierres de caja listos</h2>
+
+              <div *ngFor="let cl of cierresListos">
+                <ion-item>
+                  <ion-label style="height: 120px;">
+                    <h4>Mesa: {{cl.mesas}}</h4>
+                    <h4>Consumo: ${{cl.consumo}}</h4>
+                    <h4>Propina: ${{cl.propina}}</h4>
+                    <h4>Total: ${{cl.total}}</h4>
+                  </ion-label>
+                  <ion-avatar slot="end">
+                  </ion-avatar>
+                </ion-item>
+              </div>
+
+            </div>
+        </div>
+
+        <div *ngIf="!hayCuenta">
+          <h2 style="margin-top: 50px; font-size: 40px;">No se encontró ningún cierre de cuenta</h2>
+        </div>
+      </div>
+
+      <div *ngIf="cargando">
+        <h2 style="margin-top: 50px; font-size: 40px;">Cargando lista</h2>
+      </div>
+
+    </div>
+
+	</ion-grid>
+
+
+</ion-content>
+
+<div class="custom-loading" *ngIf="spinner">
+	<div class="spinner">
+		<div class="double-bounce1"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+		<div class="double-bounce2"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+	</div>
+</div>

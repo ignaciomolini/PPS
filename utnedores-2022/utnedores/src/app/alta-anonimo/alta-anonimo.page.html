@@ -1,0 +1,167 @@
+<ion-header [translucent]="true" [hidden]="scanActive">
+  <ion-toolbar>
+    <img id="img_toolbar" src="../../assets/Tenedores.png" width="13%" />
+    <ion-button (click)="Volver()" id="btn_toolbar"
+      ><ion-icon name="arrow-undo"></ion-icon
+    ></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [hidden]="scanActive" class="ion-padding">
+  <div class="contenedor">
+    <ion-grid style="margin-top: -80px;">
+      <div class="contenido">
+        <div class="titulo_form">
+          <img src="../../assets/cliente.png" width="60" height="60" />
+          <h2>Cliente Anónimo</h2>
+        </div>
+        <ion-button
+          hidden
+          *ngIf="esRegistrado"
+          id="btn_anonimo"
+          ></ion-button
+        >
+        <ion-button
+          hidden
+          *ngIf="esAnonimo"
+          id="btn_registrado"
+          ></ion-button
+        >
+        <form [formGroup]="formRegistro" (ngSubmit)="GuardarUsuario()">
+          <ion-input
+            id="input_nombre"
+            formControlName="nombre"
+            type="text"
+            placeholder="Nombre"
+            maxlength="15"
+            [ngClass]="{'error-borde mb-0': (nombre.dirty || nombre.touched) && nombre.errors}"
+          ></ion-input>
+          <ion-input
+            id="input_apellido"
+            formControlName="apellido"
+            type="text"
+            placeholder="Apellido"
+            [ngClass]="{'error-borde mb-0': (apellido.dirty || apellido.touched) && apellido.errors}"
+            *ngIf="esRegistrado"
+          ></ion-input>
+          <ion-input
+            id="input_dni"
+            formControlName="dni"
+            type="text"
+            placeholder="DNI"
+            [ngClass]="{'error-borde mb-0': (dni.dirty || dni.touched) && dni.errors}"
+            *ngIf="esRegistrado"
+          ></ion-input>
+          <ion-input
+            formControlName="correo"
+            type="text"
+            placeholder="Correo"
+            [ngClass]="{'error-borde mb-0': (correo.dirty || correo.touched) && correo.errors}"
+          ></ion-input>
+          <ion-row class="pe-1">
+            <ion-col>
+              <ion-input
+                formControlName="clave"
+                type="password"
+                placeholder="Clave"
+                class="me-1"
+                *ngIf="esRegistrado"
+                [ngClass]="{'error-borde mb-0': (clave.dirty || clave.touched) && clave.errors}"
+              ></ion-input>
+            </ion-col>
+            <ion-col>
+              <ion-input
+                formControlName="claveConfirmada"
+                type="password"
+                placeholder="Confirmar clave"
+                class="ms-1"
+                *ngIf="esRegistrado"
+                [ngClass]="{'error-borde mb-0': (claveConfirmada.dirty || claveConfirmada.touched) && (claveConfirmada.errors || formRegistro.errors?.noCoinciden)}"
+              ></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-item class="foto">
+            <ion-thumbnail slot="start">
+              <ion-img
+                [src]="srcUserPhoto"
+                style="max-width: 100px; max-height: 100px"
+              ></ion-img>
+            </ion-thumbnail>
+            <ion-button
+              (click)="ImagenCelular()"
+              style="--background: rgb(71, 18, 18)"
+              ><ion-icon name="folder-outline"></ion-icon
+            ></ion-button>
+            <ion-button (click)="Foto()" style="--background: rgb(71, 18, 18)"
+              ><ion-icon name="camera-outline"></ion-icon
+            ></ion-button>
+          </ion-item>
+          <ion-button
+            hidden
+            *ngIf="esRegistrado"
+            type="submit"
+            class="mt-3"
+            style="--background: rgb(15, 145, 58); height: 50px"
+            [disabled]="!formRegistro.valid || !fotoCargada"
+            ><ion-icon name="checkmark-circle-outline"></ion-icon></ion-button
+          >
+          <ion-button
+            *ngIf="esAnonimo"
+            type="submit"
+            class="mt-3"
+            style="--background: rgb(15, 145, 58); height: 50px"
+            [disabled]="!nombre.valid || !correo.valid  || formRegistro.errors?.noCoinciden || !fotoCargada"
+            ><ion-icon name="checkmark-circle-outline"></ion-icon>Ingresar como
+            Anónimo</ion-button
+          >
+        </form>
+      </div>
+    </ion-grid>
+    <ion-fab horizontal="end" vertical="bottom" [hidden]="scanActive">
+      <ion-fab-button (click)="startScanner()" size="large">
+        <img src="../../assets/qr.png" />
+      </ion-fab-button>
+    </ion-fab>
+
+    <input
+      id="inputFiles"
+      class="custom-file-input"
+      type="file"
+      (change)="Cargar($event)"
+      hidden
+    />
+  </div>
+</ion-content>
+
+<ion-row class="scanner-buttons" [hidden]="!scanActive">
+  <ion-col class="ion-no-padding">
+    <ion-button expand="full" (click)="stopScan()">Detener</ion-button>
+  </ion-col>
+</ion-row>
+
+<div class="scan-box" [hidden]="!scanActive">
+  <div class="linea"></div>
+</div>
+
+<div class="custom-loading" *ngIf="spinner">
+  <div class="spinner">
+    <div class="double-bounce1">
+      <img src="../../assets/Logo.png" style="width: 200px" />
+    </div>
+    <div class="double-bounce2">
+      <img src="../../assets/Logo.png" style="width: 200px" />
+    </div>
+  </div>
+</div>
+
+
+<div class="custom-loading2" *ngIf="clienteAgregado">
+
+	<div class="divInterno2">
+		<form class="form">
+			<h2 style="margin-top: 30px;">Cliente registrado con éxito!</h2>
+      <h2 style="margin-top: 40px;">Redirigiendo</h2>
+		</form>
+	</div>
+
+</div>

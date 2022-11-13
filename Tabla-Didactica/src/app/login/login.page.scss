@@ -1,0 +1,106 @@
+ion-content {
+  --background: none;
+  background-image: linear-gradient(
+    270deg,
+    rgba(255, 155, 133, 1) 0%,
+    rgba(247, 178, 103, 1) 100%
+  );
+  background-size: 500% 500%;
+  animation: gradient 3s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes rotate-1 {
+  0% {
+    transform: rotate(0deg) scale(0.8);
+  }
+  50% {
+    transform: rotate(180deg) scale(0.3);
+  }
+  100% {
+    transform: rotate(360deg) scale(0.8);
+  }
+}
+
+@keyframes rotate-2 {
+  0% {
+    transform: rotate(0deg) skew(15deg, 15deg);
+  }
+  50% {
+    transform: rotate(-180deg) skew(15deg, 15deg);
+  }
+  100% {
+    transform: rotate(-360deg) skew(15deg, 15deg);
+  }
+}
+
+.logo {
+  margin-top: 40px;
+  animation: rotate-1 4s linear infinite;
+}
+
+.rombo {
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 155, 133, 1) 0%,
+    rgba(247, 178, 103, 1) 100%
+  );
+  transform: rotate(45deg) skew(15deg, 15deg);
+  animation: rotate-2 3s linear infinite, gradient 6s ease infinite;
+  box-shadow: 0px 0px 30px 2px #fe5f55;
+  background-size: 200% 200%;
+  position: absolute;
+  top: 98px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+input {
+  background-color: #f9e5d8;
+}
+
+input:focus {
+  background-color: #f9e5d8;
+}
+
+button {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.margin-form {
+  margin-top: 30px;
+}
+
+.formato {
+  margin-bottom: 0;
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: bold;
+}
+
+.error-borde {
+  box-shadow: 0px 0px 4px 4px #d53030;
+}
+
+.card {
+  background-color: #fe5f55;
+  margin-top: 25px;
+}
+
+.error {
+  font-size: 16.5px;
+}

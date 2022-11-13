@@ -1,0 +1,23 @@
+<ion-content class="ion-padding">
+  <ion-fab *ngIf="estado" vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="logout()">
+      <ion-icon name="log-out-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <div class="contenedor">
+    <div
+      class="boton"
+      [ngClass]="estado ? 'bg-verde' : 'bg-rojo'"
+      (click)="modificarEstado()"
+    >
+      <div>
+        <img
+          *ngIf="estado"
+          src="../../assets/images/unlock.png"
+          width="200px"
+        />
+        <img *ngIf="!estado" src="../../assets/images/lock.png" width="200px" />
+      </div>
+    </div>
+  </div>
+</ion-content>

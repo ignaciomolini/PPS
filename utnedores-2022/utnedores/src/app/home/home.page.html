@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+	<ion-toolbar>
+		<img id="img_toolbar" src="../../assets/Tenedores.png" alt="" width="45">
+		<ion-button id="btn_toolbar" (click)="CerrarSesion()">
+			<ion-icon name="log-out-outline" style="transform: scaleX(-1);"></ion-icon>
+		</ion-button>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+	<ion-grid>
+		<div class="contenido">
+			<img src="../../assets/manager.png" alt="" width="50" height="50">
+			<h2>{{perfil}}</h2>
+			<button (click)="IrAltaSupervisor()"><img src="../../assets/manager.png" width="30" height="30"><br>Agregar<br>Dueño/Supervisor</button>
+      <button (click)="IrAltaEmpleado()"><img src="../../assets/employee.png" width="30" height="30"><br>Agregar<br>Empleado</button>
+      <button (click)="IrAltaMesa()"><img src="../../assets/table.png" width="30" height="30"><br>Agregar<br>Mesa</button>
+      <button *ngIf="perfil=='Supervisor'" (click)="IrFormulario()"><img src="../../assets/form.png" width="30" height="30"><br>Formulario<br>Cliente/Empleado</button>
+      <button (click)="IrAprobarClientes()"><img src="../../assets/approved.png" width="30" height="30"><br>Aprobar<br>Clientes</button>
+			<button (click)="IrEncuestaEmpleados()"><img src="../../assets/grafico.png" width="30" height="30"><br>Encuestas<br>Empleados</button>
+      <!-- <button (click)="IrVerReservas()"><img src="../../assets/home-cliente/reservar.png" width="30" height="30"><br>Ver<br>Reservas</button> -->
+    </div>
+	</ion-grid>
+	<ion-fab horizontal="end" vertical="bottom" >
+		<ion-fab-button size="small" (click)="ActivarDesactivarSonido()">
+			<ion-icon *ngIf="volumenOn" name="volume-high-outline"></ion-icon>
+			<ion-icon *ngIf="!volumenOn" name="volume-mute-outline"></ion-icon>
+		</ion-fab-button>
+	</ion-fab>
+</ion-content>
+
+<div class="custom-loading" *ngIf="spinner">
+	<div class="spinner">
+		<div class="double-bounce1"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+		<div class="double-bounce2"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+	</div>
+</div>

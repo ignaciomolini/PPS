@@ -1,0 +1,11 @@
+<div class="grafico">
+  <h1>Resultados de la votación de fotos de cosas lindas</h1>
+  <canvas
+    baseChart
+    [data]="chartData"
+    [options]="chartOptions"
+    [plugins]="pieChartPlugins"
+    [type]="chartType"
+    (chartClick)="chartClicked($event)"
+  ></canvas>
+</div>

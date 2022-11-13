@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-toolbar>
+    <img id="img_toolbar" src="../../assets/Tenedores.png" width="13%" />
+    <ion-button id="btn_toolbar" (click)="volver()"
+      ><ion-icon name="arrow-undo"></ion-icon
+    ></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  <div class="titulo_form">
+    <img src="../../assets/form.png" width="40" height="40" />
+    <h2>Encuestas de los clientes</h2>
+  </div>
+  <ion-grid class="scroll pt-0" *ngIf="!spinner">
+    <div *ngFor="let e of encuestas; let i=index" class="preguntas mb-3">
+      <ion-row class="row-nombre">
+        <ion-col>
+          <label class="fs-4">Cliente: {{traerNombre(e.idUsuario)}}</label>
+        </ion-col>
+      </ion-row>
+      <hr />
+      <ion-row>
+        <ion-col>
+          <label>Atencion recibida:</label>
+        </ion-col>
+        <ion-col>
+          <label class="fs-3">{{e.atencion}}</label>
+        </ion-col>
+      </ion-row>
+      <hr />
+      <ion-row>
+        <ion-col>
+          <label>Relacion precio calidad:</label>
+        </ion-col>
+        <ion-col>
+          <label class="fs-3">{{e.precioCalidad}}</label>
+        </ion-col>
+      </ion-row>
+      <hr />
+      <ion-row>
+        <ion-col>
+          <label>Ambiente:</label>
+        </ion-col>
+        <ion-col>
+          <label class="fs-3">{{e.ambiente}}</label>
+        </ion-col>
+      </ion-row>
+      <hr />
+      <ion-row>
+        <ion-col>
+          <label>Limpieza:</label>
+        </ion-col>
+        <ion-col>
+          <label class="fs-3">{{e.limpieza}}</label>
+        </ion-col>
+      </ion-row>
+      <hr />
+      <ion-row>
+        <ion-col>
+          <label>Rapidez:</label>
+        </ion-col>
+        <ion-col>
+          <label class="fs-3">{{e.rapidez}}</label>
+        </ion-col>
+      </ion-row>
+      <hr />
+      <ion-row class="py-2">
+        <ion-col>
+          <img [src]="e.foto1" class="img-lugar">
+        </ion-col>
+        <ion-col>
+          <img [src]="e.foto2" class="img-lugar">
+        </ion-col>
+        <ion-col>
+          <img [src]="e.foto3" class="img-lugar">
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>
+
+<ion-footer collapse="fade">
+  <ion-toolbar>
+    <ion-button id="btn_footer" (click)="abrirEstadisticas()">Ver estadísticas</ion-button>
+  </ion-toolbar>
+</ion-footer>
+
+<ion-modal [isOpen]="modal">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <img id="img_toolbar" src="../../assets/Tenedores.png" width="13%" />
+        <ion-button id="btn_toolbar" (click)="volverModal()"
+          ><ion-icon name="arrow-undo"></ion-icon
+        ></ion-button>
+      </ion-toolbar>
+    </ion-header>
+    
+    <ion-content class="ion-padding" [fullscreen]="true">
+      <div class="titulo_estadisticas">
+        <img src="../../assets/grafico.png" width="50" height="50" />
+        <h2>Estadísticas</h2>
+      </div>
+      <div class="contenedor">
+        <canvas
+        height="400px"
+        baseChart
+        [data]="chartDataBar"
+        [options]="chartOptionsBar"
+        [plugins]="barChartPlugins"
+        [type]="chartTypeBar"
+      ></canvas>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<div class="custom-loading" *ngIf="spinner">
+	<div class="spinner">
+		<div class="double-bounce1"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+		<div class="double-bounce2"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+	</div>
+</div>

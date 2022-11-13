@@ -1,0 +1,74 @@
+<ion-header>
+  <div class="bg-header">
+    <ion-toolbar
+      [ngClass]="curso == 'pps-4a' ? 'bg-toolbar-4a' : 'bg-toolbar-4b'"
+    >
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="home"></ion-back-button>
+      </ion-buttons>
+      <ion-title class="fw-bold">CHAT {{curso | uppercase}}</ion-title>
+    </ion-toolbar>
+  </div>
+</ion-header>
+<ion-content [ngClass]="curso == 'pps-4a' ? 'bg-content-4a' : 'bg-content-4b'">
+  <div
+    class="caja-msjs scroll"
+    #scrollMe
+    [ngClass]="curso == 'pps-4a' ? 'scroll-4a' : 'scroll-4b'"
+    [scrollTop]="chat?.length === 0 ? 0 : scrollMe.scrollHeight"
+  >
+    <div *ngFor="let msj of chat; let i = index">
+      <div
+        #cajaMsj
+        id="{{msj.uid}}"
+        class="caja-msj"
+        [class.mb-0]="i+1 == chat.length"
+        [class.bg-caja-msj-4a]="curso == 'pps-4a'"
+        [class.bg-caja-msj-4b]="curso == 'pps-4b'"
+        [ngClass]="bgMsjPropio(msj.uid)"
+      >
+        <span
+          *ngIf="usuarioActual.uid != msj.uid"
+          [ngClass]="curso == 'pps-4a' ? 'autor-4a' : 'autor-4b'"
+          >{{ msj.nombre }}</span
+        >
+        <div class="msj">{{ msj.mensaje }}</div>
+        <span class="hora text-end">{{ msj.fecha | date:'short' }}</span>
+      </div>
+    </div>
+  </div>
+  <form [formGroup]="formMsj" class="form-enviar" (ngSubmit)="enviarMensaje()">
+    <ion-grid class="grilla">
+      <ion-row class="fila">
+        <ion-col>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="mensaje"
+            placeholder="Ingrese un mensaje"
+            [class.error-borde]="mensaje.errors"
+            [ngClass]="curso == 'pps-4a' ? 'input-4a' : 'input-4b'"
+          />
+          <small class="error" *ngIf="mensaje.errors">
+            Máximo 21 caracteres
+          </small>
+        </ion-col>
+        <ion-col size="2">
+          <button
+            type="submit"
+            class="btn-enviar"
+            [ngClass]="curso == 'pps-4a' ? 'btn-enviar-4a' : 'btn-enviar-4b'"
+            [disabled]="!formMsj.valid"
+          >
+            <img
+              class="send-icon"
+              src="../../assets/images/enviar.png"
+              alt="send-icon"
+              width="30vw"
+            />
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

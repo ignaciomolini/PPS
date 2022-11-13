@@ -1,0 +1,246 @@
+<ion-header [translucent]="true" [hidden]="scanActive">
+	<ion-toolbar>
+		<img id="img_toolbar" src="../../assets/Tenedores.png" alt="" width="45">
+		<ion-button id="btn_toolbar" (click)="Volver()"><ion-icon name="arrow-undo"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [hidden]="scanActive">
+
+	<ion-grid style="margin-top: -30px">
+		<div class="contenido">
+
+      <div *ngIf="!cargando">
+        <div *ngIf="hayPedido">
+
+          <div *ngFor="let g of estadoPedido; let r = index">
+            <div *ngIf="cantTipoPedido[r] > 0">
+              <h2>Pedidos {{g}}s</h2>
+
+              <div *ngFor="let pd of pedidosVisibles; let t = index">
+                <ion-item *ngIf="pd.estado == g">
+                  <ion-label  style="height: 70px;">
+                    <h3>Pedido {{(t + 1)}}</h3>
+                    <h4>Mesa: {{pd.numMesa}}</h4>
+                    <p>{{pd.hora}} hs</p>
+                  </ion-label>
+
+                  <ion-avatar slot="end" *ngIf="pd.estado == 'Preparado'">
+                    <ion-button style="margin-top: -12px;" id="btnVerPedidos" (click)="VerPedido(t, pd.numMesa, pd.idField)">Detalles</ion-button>
+                    <ion-button style="margin-top: 1px; --background: rgb(33, 138, 33);" id="btnVerPedidos" (click)="PedidoRecibido(pd.idField)">Recibido</ion-button>
+                  </ion-avatar>
+
+                  <ion-avatar slot="end" *ngIf="pd.estado != 'Preparado'">
+                    <ion-button style="height: 50px;" id="btnVerPedidos" (click)="VerPedido(t, pd.numMesa, pd.idField)">Detalles</ion-button>
+                  </ion-avatar>
+                
+                </ion-item>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="!hayPedido">
+          <h2 style="margin-top: 50px; font-size: 40px;">No se encontró ningún pedido</h2>
+        </div>
+      </div>
+
+      <div *ngIf="cargando">
+        <h2 style="margin-top: 50px; font-size: 40px;">Cargando lista</h2>
+      </div>
+
+    </div>
+
+	</ion-grid>
+
+
+
+  <div class="custom-loading2" *ngIf="solicitarCuenta">
+
+    <div class="divInterno2" style="height: 255px;">
+      <form class="form">
+        <h3 style="margin-top: 30px; color: rgb(206, 170, 156);">Le solicitamos escanear el código QR Propina para medir su grado de satisfacción</h3>
+        <ion-button (click)="startScanner()" style="width: 70%; margin-top: 5px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Escanear</ion-button>
+        <ion-button (click)="CancelarEscanear()" style="width: 70%; margin-top: 5px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Cancelar</ion-button>
+      </form>
+    </div>
+  
+  </div>
+
+  <div class="custom-loading2" *ngIf="codigoInvalido">
+
+    <div class="divInterno2">
+      <form class="form">
+        <h3 style="margin-top: 30px; color: rgb(206, 170, 156);">Código no válido</h3>
+        <ion-button (click)="CodigoNoValido()" style="width: 70%; margin-top: 30px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Entendido</ion-button>
+
+      </form>
+    </div>
+  
+  </div>
+
+  <div class="custom-loading2" *ngIf="codigoEscaneado">
+
+    <div class="divInterno2" style="width: 98%;">
+      <form class="form" [formGroup]="formOpinion">
+        <h3 style="color: rgb(206, 170, 156);">Déjanos tu opinión sobre nuestros servicios</h3>
+        <ion-radio-group
+        formControlName="opinion"
+      >
+        <ion-row class="mt-2">
+          <ion-col *ngFor="let valor of valores">
+            <ion-radio (click)="ValidarAceptar()" value="{{valor}}"></ion-radio>
+            <ion-label>{{valor}}</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-radio-group>
+
+        <ion-button [disabled]="!aceptarRadioButton" (click)="AceptarSolicitud()" style="width: 70%; margin-top: 5px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Aceptar</ion-button>
+        <ion-button (click)="CancelarSolicitud()" style="width: 70%; margin-top: 5px; 
+        margin-bottom: 15px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Cancelar</ion-button>
+      </form>
+    </div>
+  
+  </div>
+
+</ion-content>
+
+<ion-footer collapse="fade" *ngIf="pedirCuenta == 1 && permisoPedirCuenta == true" [hidden]="scanActive">
+  <ion-toolbar>
+    <p *ngIf="propinaSolicitada" id="p_footer" style="width: 100%;">
+      Grado de satisfaccion: {{opinion.value}}
+    </p>
+    <p id="p_footer" style="width: 100%;">
+      <label>Total = ${{precioPagar}} </label><label *ngIf="propinaSolicitada"> + Propina = ${{propina}}</label>
+    </p>
+    <p *ngIf="propinaSolicitada" id="p_footer" style="width: 100%;">
+      Total a Abonar: ${{precioFinal}}
+    </p>
+    <ion-button *ngIf="!propinaSolicitada" (click)="PedirCuenta()" id="btn_footer2">Pedir la Cuenta</ion-button>
+    <ion-button *ngIf="propinaSolicitada" (click)="CierreCuenta()" id="btn_footer2">Solicitar</ion-button>
+  </ion-toolbar>
+</ion-footer>
+
+<ion-footer collapse="fade" *ngIf="pedirCuenta == 1 && permisoPedirCuenta == false" [hidden]="scanActive">
+  <ion-toolbar>
+    <p id="p_footer" style="width: 100%;">
+      <label>Total = ${{precioPagar}} </label><label> + Propina = ${{propina}}</label>
+    </p>
+    <p id="p_footer" style="width: 100%;">
+      Total a Abonar: ${{precioFinal}}
+    </p>
+  </ion-toolbar>
+</ion-footer>
+
+<div class="custom-loading2" *ngIf="poseePedidosPendientes">
+  <div class="divInterno2" style="height: 210px;">
+    <form class="form">
+      <h3 style="margin-top: 30px; color: rgb(206, 170, 156);">Posee pedidos sin recibir. Revise el estado de sus pedidos o solicite asistencia al mozo.</h3>
+      <ion-button (click)="Entendido()" style="width: 70%; margin-top: 5px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Entendido</ion-button>
+    </form>
+  </div>
+</div>
+
+
+<div class="custom-loading2" *ngIf="confirmarSolicitud">
+  <div class="divInterno2" style="height: 180px;">
+    <form class="form">
+      <h3 style="margin-top: 30px; color: rgb(206, 170, 156);">¿Solicitar Cuenta?</h3>
+      <ion-button (click)="AceptarSolicitarCuenta()" style="width: 70%; margin-top: 5px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Confirmar</ion-button>
+      <ion-button (click)="CancelarSolicitarCuenta()" style="width: 70%; margin-top: 5px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Cancelar</ion-button>
+    </form>
+  </div>
+</div>
+
+<div class="custom-loading2" *ngIf="solicitudEnviada">
+
+  <div class="divInterno2">
+    <form class="form">
+      <h3 style="margin-top: 30px; color: rgb(206, 170, 156);">Solicitud Enviada<br>Redirigiendo...</h3>
+    </form>
+  </div>
+
+</div>
+
+<ion-modal [isOpen]="isModalOpen">
+  <ng-template>
+
+    <ion-header [translucent]="true">
+      <ion-toolbar>
+        <img id="img_toolbar" src="../../assets/Tenedores.png" alt="" width="45">
+        <ion-button id="btn_footer3" (click)="AbrirPedidos()">Ver Pedidos</ion-button>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <div class="contenido">
+        <h2>Pedido {{numPedido}}</h2>
+
+        <div *ngFor="let c of categorias; let i = index" style="margin-top: -30px">
+          <div class="contenido" *ngIf="cantidadPorCategoria[i] > 0">
+            <h3>{{c}}</h3>
+
+              <div *ngFor="let p of productos; let k = index">
+                <ion-item *ngIf="p.categoria == c && cantProductosAgregados[k] != 0">
+                  <ion-avatar slot="start" style="margin-top: -95px;">
+                    <ion-img [src]="p.foto1" style="margin-left: 10px; border: 1px solid white; --border-radius: 4px; width: 45px !important; height: 45px !important; float: center;"></ion-img>
+                    <ion-img [src]="p.foto2" style="margin-top: 5px; margin-left: 10px; border: 1px solid white; --border-radius: 4px; width: 45px !important; height: 45px !important; float: center;"></ion-img>
+                    <ion-img [src]="p.foto3" style="margin-top: 5px; margin-left: 10px; border: 1px solid white; --border-radius: 4px; width: 45px !important; height: 45px !important; float: center;"></ion-img>
+                  </ion-avatar>
+                  <ion-label style="height: 156px;">
+                    <h2>{{p.producto}}</h2>
+                    <h3>{{p.descripcion}}</h3>
+                    <p *ngIf="p.tamanio != '0'">{{p.tamanio}}</p>
+                    <p *ngIf="p.tamanio == '0'">Demora: {{p.tiempoElaboracion}} mins</p>
+                    <p>Precio: ${{p.precio}}</p>
+                    <p>Cantidad: {{cantProductosAgregados[k]}}</p>
+                  </ion-label>
+                </ion-item>
+              </div>
+            
+          </div>
+        </div>
+
+      </div>
+    </ion-content>
+
+    <ion-footer collapse="fade">
+      <ion-toolbar>
+        <p id="p_footer" style="width: 100%;">
+          Total = ${{precioTotal}}
+        </p>
+        <ion-button *ngIf="pedidoRecibido" (click)="ConfirmarPedido()" id="btn_footer2">Recibido</ion-button>
+      </ion-toolbar>
+    </ion-footer>
+
+    <div class="custom-loading2" *ngIf="confirmarPedido">
+
+      <div class="divInterno2">
+        <form class="form">
+          <h3 style="margin-top: 30px; color: rgb(206, 170, 156);">¿Confirmar Pedido?</h3>
+          <ion-button (click)="AceptarConfirmarPedido()" style="width: 70%; margin-top: 5px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Confirmar</ion-button>
+          <ion-button (click)="CancelarConfirmarPedido()" style="width: 70%; margin-top: 5px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Cancelar</ion-button>
+
+        </form>
+      </div>
+    
+    </div>
+  </ng-template>
+</ion-modal>
+
+<ion-row class="scanner-buttons" [hidden]="!scanActive">
+  <ion-col class="ion-no-padding">
+    <ion-button expand="full" (click)="stopScan()">Cancelar</ion-button>
+  </ion-col>
+</ion-row>
+
+<div class="scan-box" [hidden]="!scanActive">
+</div>
+
+<div class="custom-loading" *ngIf="spinner">
+	<div class="spinner">
+		<div class="double-bounce1"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+		<div class="double-bounce2"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+	</div>
+</div>

@@ -1,0 +1,17 @@
+<ion-content class="ion-padding">
+  <div class="titulo">
+    <h1 class="text-center fuente" *ngIf="tipo == 'lindo';else feo">
+      Cosas lindas
+    </h1>
+    <ng-template #feo>
+      <h1 class="text-center fuente">Cosas feas</h1></ng-template
+    >
+  </div>
+
+  <div class="container">
+    <button class="btn" (click)="sacarFoto()">Sacar foto</button>
+    <button class="btn" (click)="misFotos()">Mis fotos</button>
+    <button class="btn" (click)="listaFotos()">Lista de fotos</button>
+    <button class="btn" (click)="grafico()">Gráfico</button>
+  </div>
+</ion-content>

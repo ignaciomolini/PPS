@@ -1,0 +1,46 @@
+.splash {
+  --background: none;
+  background: url("../assets/images/splash.png") no-repeat center / cover;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  background-color: #c2dfe3;
+}
+
+@keyframes vibrate-1 {
+  0% {
+    -webkit-transform: translate(0) scale(0.9);
+    transform: translate(0) scale(0.9);
+  }
+  20% {
+    -webkit-transform: translate(-1px, 1px) rotate(2deg) scale(0.93);
+    transform: translate(-1px, 1px) rotate(2deg) scale(0.93);
+  }
+  40% {
+    -webkit-transform: translate(-1px, -1px) rotate(-2deg) scale(0.97);
+    transform: translate(-1px, -1px) rotate(-2deg) scale(0.97);
+  }
+  50% {
+    -webkit-transform: translate(1px, 1px) rotate(2deg) scale(1);
+    transform: translate(1px, 1px) rotate(2deg) scale(1);
+  }
+  60% {
+    -webkit-transform: translate(1px, -1px) rotate(-2deg) scale(1.03);
+    transform: translate(1px, -1px) rotate(-2deg) scale(1.03);
+  }
+  80% {
+    -webkit-transform: translate(1px, 1px) rotate(2deg) scale(1.07);
+    transform: translate(1px, 1px) rotate(2deg) scale(1.07);
+  }
+  100% {
+    -webkit-transform: translate(0) scale(1.1);
+    transform: translate(0) scale(1.1);
+  }
+}
+
+.icono {
+  animation: vibrate-1 0.1s linear 3s 10 both;
+}

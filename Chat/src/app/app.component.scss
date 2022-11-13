@@ -1,0 +1,106 @@
+.splash {
+  --background: none;
+  background: url("../assets/images/splash.png") no-repeat center / cover;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  background-color: #bbd2b1;
+}
+
+@keyframes bounce-in-top {
+  0% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+  5% {
+    -webkit-transform: translateY(-250px);
+    transform: translateY(-250px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  12% {
+    -webkit-transform: translateY(0) scale(0.93);
+    transform: translateY(0) scale(0.93);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  19% {
+    -webkit-transform: translateY(-65px);
+    transform: translateY(-65px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  28% {
+    -webkit-transform: translateY(0) scale(0.97);
+    transform: translateY(0) scale(0.97);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  35% {
+    -webkit-transform: translateY(-28px);
+    transform: translateY(-28px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  43% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  52% {
+    -webkit-transform: translateY(-8px) scale(1);
+    transform: translateY(-8px) scale(1);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  59% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes shake-bottom {
+  60% {
+    -webkit-transform: rotate(0deg) scale(1.03);
+    transform: rotate(0deg) scale(1.03);
+    -webkit-transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
+  }
+  65% {
+    -webkit-transform: rotate(2deg);
+    transform: rotate(2deg);
+  }
+  70% {
+    -webkit-transform: rotate(-4deg);
+    transform: rotate(-4deg);
+  }
+  80% {
+    -webkit-transform: rotate(4deg) scale(1.07);
+    transform: rotate(4deg) scale(1.07);
+  }
+  85% {
+    -webkit-transform: rotate(-2deg);
+    transform: rotate(-2deg);
+  }
+  90% {
+    -webkit-transform: rotate(2deg);
+    transform: rotate(2deg);
+  }
+  100% {
+    -webkit-transform: translate(0) scale(1.1);
+    transform: translate(0) scale(1.1);
+  }
+}
+
+.icono {
+  animation: bounce-in-top 3s linear 3s both, shake-bottom 0.6s linear 3s both;
+  position: absolute;
+}

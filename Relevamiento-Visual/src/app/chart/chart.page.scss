@@ -1,0 +1,29 @@
+ion-content,
+ion-toolbar {
+  --background: radial-gradient(
+    circle,
+    rgba(128, 237, 153, 1) 0%,
+    rgba(65, 202, 170, 1) 70%,
+    rgba(56, 163, 165, 1) 100%
+  );
+}
+
+ion-back-button {
+  position: absolute;
+  --color: rgba(24, 78, 119, 1);
+}
+
+.fuente {
+  margin: auto;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  background: linear-gradient(
+    90deg,
+    rgba(24, 78, 119, 1) 0%,
+    rgba(30, 96, 145, 1) 50%,
+    rgba(26, 117, 159, 1) 100%
+  );
+  background-clip: text;
+  color: transparent;
+}

@@ -1,0 +1,22 @@
+.splash {
+    --background: none;
+    background: url("../assets/splash4.png") no-repeat center / cover;
+    height:100%;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    width:100%;
+    background-color: #94D2BD;
+}
+
+ @-webkit-keyframes rotate-scale-up{0%{-webkit-transform:scale(1) rotateZ(0);transform:scale(1) rotateZ(0)}50%{-webkit-transform:scale(1.5) rotateZ(180deg);transform:scale(1.5) rotateZ(180deg)}100%{-webkit-transform:scale(1) rotateZ(360deg);transform:scale(1) rotateZ(360deg)}}@keyframes rotate-scale-up{0%{-webkit-transform:scale(1) rotateZ(0);transform:scale(1) rotateZ(0)}50%{-webkit-transform:scale(1.5) rotateZ(180deg);transform:scale(1.5) rotateZ(180deg)}100%{-webkit-transform:scale(1) rotateZ(360deg);transform:scale(1) rotateZ(360deg)}}
+
+.rotate-scale-up{
+  -webkit-animation:rotate-scale-up 1.2s linear 3s both;
+  animation:rotate-scale-up 1.2s linear 3s both;
+  img{
+    height: 25vh;
+  }
+}

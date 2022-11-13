@@ -1,0 +1,131 @@
+ion-content {
+  --background: none;
+  background: url("../../assets/images/bg2.svg") no-repeat center / cover;
+}
+
+.contenedor-creditos {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100vw;
+  height: 70vh;
+  padding: 16px;
+  padding-bottom: 30px;
+}
+
+.contenedor-scanear {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100vw;
+  height: 30vh;
+  padding: 16px;
+  padding-top: 30px;
+}
+
+.card-creditos {
+  background-color: rgba(180, 180, 180, 0.4);
+  backdrop-filter: blur(4px);
+  border: none;
+  border: 1px solid #ddece294;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px rgba(196, 196, 196, 0.8);
+  width: 95%;
+  padding: 40px 15px 40px 15px;
+  color: #0f3735;
+  text-align: center;
+  h1 {
+    font-size: 80px;
+  }
+  span {
+    font-size: 120px;
+    font-weight: 500;
+  }
+}
+
+.card-scanear {
+  background-color: rgba(180, 180, 180, 0.4);
+  backdrop-filter: blur(4px);
+  border: none;
+  border: 1px solid #ddece294;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px rgba(196, 196, 196, 0.8);
+  width: 95%;
+  padding: 20px 15px 20px 15px;
+  color: #0f3735;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transition: transform 0.3s;
+  span {
+    font-size: 35px;
+    font-weight: 500;
+  }
+}
+
+.spin {
+  position: absolute;
+  top: 30%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.card-scanear:active {
+  transform: scale(0.9);
+}
+
+.limpiarCreditos {
+  width: 38vw;
+  margin-inline: 0;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  --background: rgb(222, 52, 52);
+  --border-radius: 10px;
+  --color: white;
+}
+
+.linea {
+  border-bottom-style: groove;
+  border-bottom-width: 4px;
+  border-color: red;
+  animation: mover-linea 2s linear infinite both;
+}
+
+.scanner-ui {
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.4);
+  content: "";
+  display: block;
+  left: 50%;
+  height: 250px;
+  width: 250px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes mover-linea {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(246px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.fab-btn {
+  width: 40px;
+  height: 40px;
+  --background: rgb(222, 52, 52);
+  transition: transform 0.3s, --background 0.3s;
+}
+
+.fab-btn:active {
+  --background: rgb(180, 30, 30);
+  transform: scale(0.9);
+}

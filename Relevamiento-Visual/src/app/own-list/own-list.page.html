@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <h1 class="fuente">Mis fotos</h1>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngFor="let foto of fotos; let i = index">
+    <div class="card mb-3" [class.mt-2]="i == 0">
+      <div class="marco">
+        <ion-spinner name="lines" color="light" class="spin"></ion-spinner>
+        <img src="{{ foto.ruta }}" />
+      </div>
+      <div class="card-body">
+        <ul class="list-group text-center">
+          <li class="list-group-item">
+            Descripción: &nbsp;{{ foto.descripcion }}
+          </li>
+          <li class="list-group-item">
+            Fecha: &nbsp;{{ foto.fecha | date:'short' }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ion-content>

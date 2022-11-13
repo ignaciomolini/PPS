@@ -1,0 +1,159 @@
+<ion-header>
+  <ion-toolbar>
+    <img id="img_toolbar" src="../../assets/Tenedores.png" width="13%" />
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="contenedor" style="margin-top:60px;">
+    <ion-grid>
+      <div class="titulo_form">
+        <img src="../../assets/form.png" width="60" height="60" />
+        <h2>Encuesta empleado</h2>
+      </div>
+      <form [formGroup]="formEncuesta" (ngSubmit)="enviarEncuesta()">
+        <div class="preguntas">
+          <div class="pe-3 py-2">
+            <ion-row>
+              <ion-col>
+                <label>Ambiente laboral:</label>
+              </ion-col>
+              <ion-col>
+                <ion-input
+                  type="number"
+                  maxlength="1"
+                  placeholder="Puntaje 1 a 5"
+                  formControlName="preguntaUno"
+                  [ngClass]="{'error-borde mb-0': (preguntaUno.dirty || preguntaUno.touched) && preguntaUno.errors}"
+                >
+                </ion-input>
+              </ion-col>
+            </ion-row>
+          </div>
+          <hr />
+          <div class="pt-1">
+            <ion-label class="ps-2">Orden de mesas y sillas:</ion-label>
+            <ion-row>
+              <ion-col *ngFor="let valor of valores">
+                <ion-item lines="none">
+                  <ion-label>{{valor}}</ion-label>
+                  <ion-checkbox
+                    (click)="cambios($event, valor)"
+                    id="check-{{valor}}"
+                  ></ion-checkbox
+                ></ion-item>
+              </ion-col>
+            </ion-row>
+          </div>
+          <hr />
+          <div class="pe-2 py-2">
+            <ion-row>
+              <ion-col>
+                <ion-label>Limpieza de los pisos:</ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-select
+                  interface="popover"
+                  placeholder="Elija un puntaje"
+                  formControlName="preguntaTres"
+                >
+                  <ion-select-option value="1">1</ion-select-option>
+                  <ion-select-option value="2">2</ion-select-option>
+                  <ion-select-option value="3">3</ion-select-option>
+                  <ion-select-option value="4">4</ion-select-option>
+                  <ion-select-option value="5">5</ion-select-option>
+                </ion-select>
+              </ion-col>
+            </ion-row>
+          </div>
+          <hr />
+          <div class="p-2 pt-1">
+            <label>Estado de la cocina:</label>
+            <ion-radio-group
+              formControlName="preguntaCuatro"
+            >
+              <ion-row class="mt-2">
+                <ion-col *ngFor="let valor of valores">
+                  <ion-label>{{valor}}</ion-label>
+                  <ion-radio value="{{valor}}"></ion-radio>
+                </ion-col>
+              </ion-row>
+            </ion-radio-group>
+          </div>
+          <hr />
+          <div class="px-2 pt-1">
+            <label>Estado de los baños:</label>
+            <ion-row class="mt-4">
+              <span>1</span>
+              <ion-range
+                [pin]="true"
+                [ticks]="true"
+                [snaps]="true"
+                [min]="1"
+                [max]="5"
+                formControlName="preguntaCinco"
+              ></ion-range>
+              <span>5</span>
+            </ion-row>
+          </div>
+          <hr />
+          <div>
+            <ion-item lines="none">
+              <ion-thumbnail slot="start">
+                <ion-img
+                  [src]="srcUserPhoto"
+                  style="max-width: 100px; max-height: 100px"
+                ></ion-img>
+              </ion-thumbnail>
+              <ion-button
+              (click)="ImagenCelular()"
+              style="--background: rgb(71, 18, 18)"
+              ><ion-icon name="folder-outline"></ion-icon
+            ></ion-button>
+              <ion-button (click)="Foto()" style="--background: rgb(71, 18, 18)"
+                ><ion-icon name="camera-outline"></ion-icon
+              ></ion-button>
+            </ion-item>
+          </div>
+        </div>
+
+        <ion-button
+          type="submit"
+          class="mt-3"
+          style="--background: rgb(15, 145, 58); height: 50px"
+          [disabled]="!formEncuesta.valid || !fotoCargada"
+          ><ion-icon name="checkmark-circle-outline"></ion-icon>Enviar encuesta</ion-button>
+          <ion-button (click)="SaltarEncuesta()">Saltar encuesta</ion-button>
+      </form>
+    </ion-grid>
+    <input
+      id="inputFiles"
+      class="custom-file-input"
+      type="file"
+      (change)="Cargar($event)"
+      hidden
+    />
+  </div>
+</ion-content>
+
+<div class="custom-loading" *ngIf="spinner">
+  <div class="spinner">
+    <div class="double-bounce1">
+      <img src="../../assets/Logo.png" style="width: 200px" />
+    </div>
+    <div class="double-bounce2">
+      <img src="../../assets/Logo.png" style="width: 200px" />
+    </div>
+  </div>
+</div>
+
+<div class="custom-loading2" *ngIf="encuestaEnviada">
+
+	<div class="divInterno2">
+		<form class="form">
+			<h2 style="margin-top: 30px;">Encuesta enviada con éxito!</h2>
+      <h2 style="margin-top: 40px;">Redirigiendo</h2>
+		</form>
+	</div>
+
+</div>

@@ -1,0 +1,152 @@
+<ion-header [translucent]="true">
+	<ion-toolbar>
+		<img id="img_toolbar" src="../../assets/Tenedores.png" alt="" width="45">
+		<ion-button id="btn_toolbar" (click)="CerrarSesion()">
+			<ion-icon name="log-out-outline" style="transform: scaleX(-1);"></ion-icon>
+		</ion-button>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+	<ion-grid>
+		<div class="contenido" *ngIf="tipo != ''">
+
+			<div class="encabezado" *ngIf="tipo == 'Bartender'">
+				<img src="../../assets/bartender.png" alt="" width="50" height="50">
+				<h2>{{tipo}}</h2>
+			</div>
+			
+			<div class="encabezado" *ngIf="tipo == 'Cocinero'">
+				<img src="../../assets/employee.png" alt="" width="50" height="50">
+				<h2>{{tipo}}</h2>
+			</div>
+
+			<div style="margin-top: 15px;">
+				<button (click)="IrAltaMesa()"><img src="../../assets/dessert.png" width="30" height="30"><br>Agregar Un<br>Producto</button>
+			</div>
+			<div style="margin-top: 15px;">
+				<button (click)="VerPedidos()"><img src="../../assets/home-cliente/cocinando.png" width="30" height="30"><br>Ver<br>Pedidos</button>
+			</div>
+
+		</div>
+		<div class="contenido" *ngIf="tipo == ''">
+			<h2>Cargando</h2>
+		</div>
+	</ion-grid>
+	<ion-fab horizontal="end" vertical="bottom" >
+		<ion-fab-button size="small" (click)="ActivarDesactivarSonido()">
+			<ion-icon *ngIf="volumenOn" name="volume-high-outline"></ion-icon>
+			<ion-icon *ngIf="!volumenOn" name="volume-mute-outline"></ion-icon>
+		</ion-fab-button>
+	</ion-fab>
+
+	<ion-modal [isOpen]="isModalOpen">
+		<ng-template>
+
+			<ion-header [translucent]="true">
+				<ion-toolbar>
+					<img id="img_toolbar" src="../../assets/Tenedores.png" alt="" width="45">
+					<ion-button id="btn_footer3" (click)="VolverHome()">Volver</ion-button>
+				</ion-toolbar>
+			</ion-header>
+			
+			<ion-content class="ion-padding">
+				<ion-grid style="margin-top: -30px">
+					<div class="contenido">
+						<div *ngIf="hayPedido">
+
+							<div *ngFor="let g of estadoPedido; let r = index">
+								<h2>Pedidos {{estadoPedido[r]}}</h2>
+								<div *ngFor="let pd of pedidosVisibles; let t = index">
+									<ion-item *ngIf="pd.estado == estadoPedido[r]">
+										<ion-label>
+											<h3>Pedido {{(t + 1)}}</h3>
+											<h4>Mesa: {{pd.numMesa}}</h4>
+											<p>Solicitado a las: {{pd.hora}} hs</p>
+										</ion-label>
+										<ion-avatar slot="end">
+											<ion-button id="btnVerPedidos" (click)="VerPedido(t, pd.numMesa, pd.idField)">Ver Pedido</ion-button>
+										</ion-avatar>
+									</ion-item>
+								</div>
+							</div>
+
+						</div>
+						<div *ngIf="!hayPedido">
+							<h2 style="margin-top: 50px; font-size: 40px;">No se encontró ningún pedido</h2>
+						</div>
+					</div>
+				</ion-grid>
+			</ion-content>
+		</ng-template>
+	</ion-modal>
+
+	<ion-modal [isOpen]="isModalOpen2 || isModalOpen3">
+	<ng-template>
+		<ion-header [translucent]="true">
+			<ion-toolbar>
+				<img id="img_toolbar" src="../../assets/Tenedores.png" alt="" width="45">
+				<ion-button id="btn_footer3" (click)="AbrirPedidos()">Ver Pedidos</ion-button>
+			</ion-toolbar>
+			</ion-header>
+	
+			<ion-content class="ion-padding">
+			<div class="contenido">
+				<h2>Pedido Mesa {{numeroMesa}}</h2>
+	
+				<div *ngFor="let c of categorias; let i = index" style="margin-top: -30px">
+					<div class="contenido" *ngIf="cantidadPorCategoria[i] > 0">
+						<h3>{{c}}</h3>
+		
+						<div *ngFor="let p of productos; let k = index">
+							<ion-item *ngIf="p.categoria == c && cantProductosAgregados[k] != 0">
+								<ion-avatar slot="start" style="margin-top: -95px;">
+									<ion-img [src]="p.foto1" style="margin-left: 10px; border: 1px solid white; --border-radius: 4px; width: 45px !important; height: 45px !important; float: center;"></ion-img>
+									<ion-img [src]="p.foto2" style="margin-top: 5px; margin-left: 10px; border: 1px solid white; --border-radius: 4px; width: 45px !important; height: 45px !important; float: center;"></ion-img>
+									<ion-img [src]="p.foto3" style="margin-top: 5px; margin-left: 10px; border: 1px solid white; --border-radius: 4px; width: 45px !important; height: 45px !important; float: center;"></ion-img>
+								</ion-avatar>
+								<ion-label style="height: 156px;">
+									<h2>{{p.producto}}</h2>
+									<h3>{{p.descripcion}}</h3>
+									<p *ngIf="p.tamanio != '0'">{{p.tamanio}}</p>
+									<p *ngIf="p.tamanio == '0'">Demora: {{p.tiempoElaboracion}} mins</p>
+									<p>Precio: ${{p.precio}}</p>
+									<p>Cantidad: {{cantProductosAgregados[k]}}</p>
+								</ion-label>
+							</ion-item>
+						</div>
+						
+					</div>
+				</div>
+	
+			</div>
+			</ion-content>
+	
+			<ion-footer collapse="fade">
+			<ion-toolbar>
+				<ion-button *ngIf="confirmarButton" (click)="ConfirmarPedido()" id="btn_footer2">Confirmar</ion-button>
+			</ion-toolbar>
+			</ion-footer>
+	
+			<div class="custom-loading2" *ngIf="confirmarPedido">
+	
+			<div class="divInterno2">
+				<form class="form">
+				<h3 style="margin-top: 30px; color: rgb(206, 170, 156);">¿Confirmar Pedido?</h3>
+				<ion-button (click)="AceptarConfirmarPedido()" style="width: 70%; margin-top: 5px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Confirmar</ion-button>
+				<ion-button (click)="CancelarConfirmarPedido()" style="width: 70%; margin-top: 5px; font-size: 1em; color: rgb(11, 6, 3); --background:rgb(206, 170, 156);">Cancelar</ion-button>
+	
+				</form>
+			</div>
+			</div>
+	</ng-template>
+	</ion-modal>
+</ion-content>
+
+<div class="custom-loading" *ngIf="spinner">
+	<div class="spinner">
+		<div class="double-bounce1"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+		<div class="double-bounce2"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+	</div>
+</div>

@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+	<ion-toolbar>
+		<img id="img_toolbar" src="../../assets/Tenedores.png" alt="" width="45">
+		<ion-button id="btn_toolbar" (click)="CerrarSesion()">
+			<ion-icon name="log-out-outline" style="transform: scaleX(-1);"></ion-icon>
+		</ion-button>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+	<ion-grid>
+		<div class="contenido">
+			<img src="../../assets/metre.png" alt="" width="50" height="50">
+			<h2>Metre</h2>
+			<div>
+				<button (click)="IrAltaCliente()"><img src="../../assets/cliente.png" width="30" height="30"><br><br>Agregar<br>Cliente</button>
+			</div>
+			<div>
+				<button (click)="IrListaEspera()"><img src="../../assets/listado.png" width="30" height="30"><br><br>Lista<br>Espera</button>
+			</div>
+			<div>
+				<button (click)="GestionarMesas()"><img src="../../assets/table.png" width="30" height="30"><br><br>Gestionar<br>Mesas</button>
+			</div>
+			
+		</div>
+	</ion-grid>
+	<ion-fab horizontal="end" vertical="bottom" >
+		<ion-fab-button size="small" (click)="ActivarDesactivarSonido()">
+			<ion-icon *ngIf="volumenOn" name="volume-high-outline"></ion-icon>
+			<ion-icon *ngIf="!volumenOn" name="volume-mute-outline"></ion-icon>
+		</ion-fab-button>
+	</ion-fab>
+</ion-content>
+
+<div class="custom-loading" *ngIf="spinner">
+	<div class="spinner">
+		<div class="double-bounce1"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+		<div class="double-bounce2"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+	</div>
+</div>

@@ -1,0 +1,47 @@
+<ion-content class="ion-padding">
+  <span [ngSwitch]="tema">
+    <app-numeros [idioma]="idioma" *ngSwitchCase="'numeros'"></app-numeros>
+    <app-animales [idioma]="idioma" *ngSwitchCase="'animales'"></app-animales>
+    <app-colores [idioma]="idioma" *ngSwitchCase="'colores'"></app-colores>
+  </span>
+
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="logout()" class="salir">
+      <ion-icon name="log-out-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+    <ion-fab-button class="fab-but">
+      <img  #imgTema src="../../assets/images/temas/animales.png" />
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="medium" (click)="cambiarTema('animales')">
+        <img src="../../assets/images/temas/animales.png" />
+      </ion-fab-button>
+      <ion-fab-button color="medium" (click)="cambiarTema('colores')">
+        <img src="../../assets/images/temas/colores.png" />
+      </ion-fab-button>
+      <ion-fab-button color="medium" (click)="cambiarTema('numeros')">
+        <img src="../../assets/images/temas/numeros.png" />
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button class="fab-but">
+      <img #imgIdioma src="../../assets/images/idiomas/argentina.png" />
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="medium" (click)="cambiarIdioma('español')">
+        <img src="../../assets/images/idiomas/argentina.png" />
+      </ion-fab-button>
+      <ion-fab-button color="medium" (click)="cambiarIdioma('portugues')">
+        <img src="../../assets/images/idiomas/brasil.png" />
+      </ion-fab-button>
+      <ion-fab-button color="medium" (click)="cambiarIdioma('ingles')">
+        <img src="../../assets/images/idiomas/estados-unidos.png" />
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <h1 class="fuente">Gráfico</h1>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <app-bar-chart *ngIf="tipo == 'feo'"></app-bar-chart>
+  <app-pie-chart *ngIf="tipo == 'lindo'"></app-pie-chart>
+</ion-content>

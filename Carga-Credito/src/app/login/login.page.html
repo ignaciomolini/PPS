@@ -1,0 +1,83 @@
+<ion-content class="ion-padding">
+  <div class="logo d-flex justify-content-center">
+    <div class="peso">
+      <img src="../../assets/images/peso2.png" alt="peso" />
+    </div>
+    <div class="tarjeta">
+      <img src="../../assets/images/tarjetaSola2.png" alt="tarjeta" />
+    </div>
+  </div>
+
+  <div class="card">
+    <h1>Inicio de sesión</h1>
+    <form [formGroup]="formLogin" (ngSubmit)="login()" class="bg-form">
+      <div
+        [ngClass]="((email.dirty || email.touched) && email.errors) ? 'mb-1' : 'mb-3'"
+      >
+        <input
+          formControlName="email"
+          type="email"
+          class="form-control border border-primary"
+          placeholder="Correo electrónico"
+          [class.error-borde]="(email.dirty || email.touched) && email.errors"
+        />
+        <small
+          class="error"
+          *ngIf="(email.dirty || email.touched) && email.errors"
+        >
+          Correo electrónico inválido
+        </small>
+      </div>
+      <div
+        [ngClass]="((password.dirty || password.touched) && password.errors) ? 'mb-1' : 'mb-3'"
+      >
+        <input
+          formControlName="password"
+          type="password"
+          class="form-control border border-primary"
+          placeholder="Contraseña"
+          [class.error-borde]="(password.dirty || password.touched) && password.errors"
+        />
+        <small
+          class="error"
+          *ngIf="(password.dirty || password.touched) && password.errors"
+        >
+          La contraseña debe tener 6 o mas caracteres
+        </small>
+      </div>
+      <div class="d-grid">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!formLogin.valid"
+        >
+          Ingresar
+        </button>
+      </div>
+    </form>
+    <h2>Acceso rápido</h2>
+    <div class="input-group d-flex justify-content-center" role="group">
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="accesoRapidoAdmin()"
+      >
+        admin
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="accesoRapidoInvitado()"
+      >
+        invitado
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="accesoRapidoUsuario()"
+      >
+        usuario
+      </button>
+    </div>
+  </div>
+</ion-content>

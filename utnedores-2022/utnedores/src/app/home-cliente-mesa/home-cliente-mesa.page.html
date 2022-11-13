@@ -1,0 +1,40 @@
+<ion-header [translucent]="true" [hidden]="scanActive">
+	<ion-toolbar>
+		<img id="img_toolbar" src="../../assets/Tenedores.png" alt="" width="45">
+		<ion-button id="btn_toolbar" (click)="Volver()">
+			<ion-icon name="arrow-undo"></ion-icon>
+		</ion-button>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [hidden]="scanActive">
+	<ion-grid>
+		<div class="contenido">
+			<h2>Menú de opciones</h2>
+			<button *ngIf="permisoPedido" (click)="IrPedido()"><img src="../../assets/dessert.png" width="30" height="30"> Ordenar un pedido</button>
+			<button *ngIf="!permisoPedido" style="color: grey;"><img src="../../assets/dessert.png" width="30" height="30"> Ordenar un pedido</button>
+			<button (click)="EstadoPedido()"><img src="../../assets/home-cliente/cocinando.png" width="30" height="30"> Estado de mi pedido</button>
+			<button (click)="ConsultarMozo()"><img src="../../assets/home-cliente/chat.png" width="30" height="30"> Consultar al Mozo</button>
+			<!--button (click)="IrJuegos()"><img src="../../assets/home-cliente/game.png" width="30" height="30"> Jugar</button-->
+			<button (click)="PedirCuenta()"><img src="../../assets/home-cliente/pedirCuenta.png" width="30" height="30"> Pedir la Cuenta</button>
+			<button *ngIf="!encuentra" (click)="IrEncuestas()"><img src="../../assets/home-cliente/ver-encuestas.png" width="30" height="30"> Dejar mi opinión</button>
+		</div>
+	</ion-grid>
+
+</ion-content>
+
+<ion-row class="scanner-buttons" [hidden]="!scanActive">
+	<ion-col class="ion-no-padding">
+	  <ion-button expand="full" (click)="stopScan()">Detener</ion-button>
+	</ion-col>
+</ion-row>
+
+<div class="scan-box" [hidden]="!scanActive">
+</div>
+
+<div class="custom-loading" *ngIf="spinner">
+	<div class="spinner">
+		<div class="double-bounce1"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+		<div class="double-bounce2"><img src="../../assets/Logo.png" style="width: 200px;"></div>
+	</div>
+</div>

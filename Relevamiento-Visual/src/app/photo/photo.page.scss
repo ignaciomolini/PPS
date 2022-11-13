@@ -1,0 +1,106 @@
+ion-content,
+ion-toolbar {
+  --background: radial-gradient(
+    circle,
+    rgba(128, 237, 153, 1) 0%,
+    rgba(65, 202, 170, 1) 70%,
+    rgba(56, 163, 165, 1) 100%
+  );
+}
+
+ion-back-button {
+  position: absolute;
+  --color: rgba(24, 78, 119, 1);
+}
+
+.fuente {
+  margin: auto;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  background: linear-gradient(
+    90deg,
+    rgba(24, 78, 119, 1) 0%,
+    rgba(30, 96, 145, 1) 50%,
+    rgba(26, 117, 159, 1) 100%
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+.contenedor {
+  height: 88vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
+.formulario{
+ width: 100%;
+ padding-top: 10px !important;
+}
+
+.card-foto{
+  height: 50vh;
+  width: 100%;
+  img{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+  }
+}
+
+.card {
+  background: linear-gradient(
+    90deg,
+    rgba(24, 78, 119, 1) 0%,
+    rgba(30, 96, 145, 1) 50%,
+    rgba(26, 117, 159, 1) 100%
+  );
+  padding: 16px;
+}
+
+.error {
+  font-size: 15.5px;
+  color: #e76f51;
+}
+
+.error-borde {
+  box-shadow: 0px 0px 3px 3px #e76f51;
+}
+
+label {
+  color: antiquewhite;
+}
+
+input {
+  color: black !important;
+  background-color: #f8edeb;
+}
+
+input:focus {
+  background-color: #f8edeb;
+}
+
+.btn-per {
+  font-weight: bold;
+  background-color: #52b69a;
+  border: none;
+}
+
+.btn-per:hover {
+  background-color: #52b69a;
+}
+
+.btn-per:active {
+  background-color: #469881;
+}
+
+.btn {
+  color: #f8edeb;
+}
+
+.btn:hover {
+  color: #f8edeb;
+}

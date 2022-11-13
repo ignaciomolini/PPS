@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center text-black">Ingreso</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="logo ion-text-center">
+    <img src="../../assets/icon2.png" alt="logo" />
+  </div>
+  <ion-card class="form bg-form">
+    <form [formGroup]="formLogin" (ngSubmit)="login()" class="bg-form">
+      <ion-item lines="full" class="bg-form">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+        <ion-note
+          slot="error"
+          *ngIf="(email.dirty || email.touched) && email.errors"
+          >Email invalido</ion-note
+        >
+      </ion-item>
+      <ion-item lines="full" class="bg-form">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+        <ion-note
+          slot="error"
+          *ngIf="(password.dirty || password.touched) && password.errors"
+          >La contraseña debe tener por lo menos 6 caracteres</ion-note
+        >
+      </ion-item>
+
+      <ion-button
+        type="submit"
+        expand="full"
+        [disabled]="!formLogin.valid"
+        class="m-3 mt-4 bg-b"
+        >Ingresar</ion-button
+      >
+    </form>
+    <p class="ion-text-center text-black">
+      No tenes cuenta?
+      <a (click)="signup()" class="fw-bold text-decoration-none text-black"
+        >Registrate</a
+      >
+    </p>
+  </ion-card>
+
+  <ion-card class="bg-form">
+    <ion-button (click)="accesoRapido()" expand="full" class="m-1 bg-b"
+      >Acceso rapido 1</ion-button
+    >
+    <ion-button (click)="accesoRapido()" expand="full" class="m-1 bg-b"
+      >Acceso rapido 2</ion-button
+    >
+    <ion-button (click)="accesoRapido()" expand="full" class="m-1 bg-b"
+      >Acceso rapido 3</ion-button
+    >
+  </ion-card>
+</ion-content>
